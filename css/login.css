@@ -1,0 +1,395 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+/* indice/variáveis dos estilos */
+:root {
+    --cor-creme: #FFFBF5;
+    --cor-marfim: #F7F3ED;
+    --cor-branco-quente: #FEFCF9;
+    --cor-ouro: #bf873b;
+    --cor-ouro-escuro: #8B6914;
+    --cor-grafite: #1C1C1C;
+    --cor-cinza-claro: #3A3A3A;
+    --cor-taupa: #A69080;
+    --cor-taupa-claro: #C4B5A5;
+
+    --fonte-titulos: 'Lucy Rose', Georgia, serif;
+    --fonte-pagina: 'DM Sans', -apple-system, sans-serif;
+
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: #0b0b0b;
+    color: #fff;
+    overflow: hidden;
+}
+
+/* LOADER */
+
+.loader {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    transition: 1s ease;
+}
+
+.loader img {
+    width: 120px;
+    animation: pulse 2s infinite;
+}
+
+.loader.hide {
+    opacity: 0;
+    visibility: hidden;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.05);
+        opacity: .7;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* PAGINA */
+
+.auth-page {
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.back-button {
+    position: fixed;
+    top: 30px;
+    left: 30px;
+    z-index: 999;
+
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-decoration: none;
+
+    color: rgba(255, 255, 255, 0.7);
+    background: rgba(0, 0, 0, 0.2);
+
+    padding: 10px 14px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    backdrop-filter: blur(10px);
+
+    transition: 0.4s ease;
+}
+
+/* VISUAL */
+
+.auth-visual {
+    position: relative;
+    background:
+        linear-gradient(rgba(0, 0, 0, .5),
+            rgba(0, 0, 0, .75)),
+        url('../assets/images/login-bg.jpg') center/cover no-repeat;
+    display: flex;
+    align-items: flex-end;
+    padding: 80px;
+}
+
+.visual-content {
+    position: relative;
+    z-index: 2;
+    max-width: 500px;
+    animation: fadeUp 1.2s ease;
+}
+
+/* VISUAL - LOGO do Forms */
+
+.visual-logo {
+    width: 110px;
+    margin-bottom: 8px;
+    opacity: .95;
+}
+
+.mini-text{
+    display:block;
+
+    margin-top:12px;
+
+    font-size:11px;
+    letter-spacing:5px;
+
+    color:var(--cor-ouro);
+
+    text-align:left;
+}
+
+.visual-content h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 64px;
+    line-height: 1.1;
+    margin: 20px 0;
+}
+
+.visual-content p {
+    color: #d1d1d1;
+    line-height: 1.8;
+}
+
+/* FORM SIDE */
+
+.auth-form-side {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px;
+    background: #111;
+}
+
+.auth-container {
+    width: 100%;
+    max-width: 430px;
+    animation: fadeUp 1s ease;
+}
+
+.form-logo {
+    width: 100px;
+    margin-bottom: 40px;
+    display: none;
+}
+
+.form-mini-title {
+    color: #d4af37;
+    letter-spacing: 3px;
+    font-size: 11px;
+}
+
+.auth-container h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 52px;
+    margin-top: 15px;
+}
+
+.form-description {
+    color: #aaa;
+    margin: 15px 0 40px;
+    line-height: 1.7;
+}
+
+/* INPUTS */
+
+.input-group {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.input-group input {
+    width: 100%;
+    height: 62px;
+    background: rgba(255, 255, 255, .03);
+    border: 1px solid rgba(255, 255, 255, .08);
+    padding: 0 20px;
+    color: #fff;
+    outline: none;
+    font-size: 15px;
+    transition: .4s ease;
+}
+
+.input-group label {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    color: #777;
+    pointer-events: none;
+    transition: .3s ease;
+}
+
+.input-group input:focus {
+    border-color: #d4af37;
+    background: rgba(255, 255, 255, .05);
+}
+
+.input-group input:focus+label,
+.input-group input:valid+label {
+    top: -10px;
+    left: 14px;
+    background: #111;
+    padding: 0 8px;
+    font-size: 12px;
+    color: #d4af37;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 20px;
+    top: 22px;
+    color: #888;
+    cursor: pointer;
+}
+
+/* OPTIONS */
+
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    font-size: 14px;
+}
+
+.form-options a {
+    color: #d4af37;
+    text-decoration: none;
+}
+
+.remember {
+    display: flex;
+    gap: 10px;
+    color: #aaa;
+}
+
+/* BUTTON */
+
+.login-btn {
+    width: 100%;
+    height: 62px;
+    border: none;
+    background: #d4af37;
+    color: #000;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: .4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.login-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(212, 175, 55, .3);
+}
+
+/* DIVIDER */
+
+.divider {
+    margin: 35px 0;
+    text-align: center;
+    position: relative;
+}
+
+.divider::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    background: rgba(255, 255, 255, .08);
+    top: 50%;
+    left: 0;
+}
+
+.divider span {
+    background: #111;
+    padding: 0 20px;
+    position: relative;
+    color: #777;
+    font-size: 14px;
+}
+
+/* SOCIAL */
+
+.social-login {
+    display: flex;
+    gap: 15px;
+}
+
+.social-login button {
+    flex: 1;
+    height: 58px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, .08);
+    color: #fff;
+    cursor: pointer;
+    transition: .3s ease;
+}
+
+.social-login button:hover {
+    border-color: #d4af37;
+}
+
+/* SIGNUP */
+
+.signup-text {
+    margin-top: 40px;
+    text-align: center;
+    color: #888;
+}
+
+.signup-text a {
+    color: #d4af37;
+    text-decoration: none;
+}
+
+/* ANIMATION */
+
+@keyframes fadeUp {
+
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+/* RESPONSIVO */
+
+@media(max-width:992px) {
+
+    .visual-logo {
+        display: none;
+    }
+
+    .form-logo {
+        display: block;
+        margin: 0 auto 40px;
+    }
+
+    .auth-page {
+        grid-template-columns: 1fr;
+    }
+
+    .auth-visual {
+        display: none;
+    }
+
+    .auth-form-side {
+        padding: 30px;
+    }
+
+    .auth-container h2 {
+        font-size: 42px;
+    }
+
+}
