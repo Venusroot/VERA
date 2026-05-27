@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VERA</title>
+
+  <link rel="icon" type="image/png" href="assets/images/faricon.png" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
+
+<body>
+  <!-- Função da tela de carregamento-->
+  <div class="loader">
+    <div class="loader-logo">
+      <img src="assets/images/logo.png" alt="VERA Logo">
+    </div>
+  </div>
+
+  <header class="header">
+    <div class="top-header">
+
+      <a href="index.html" class="logo">
+        <img src="assets/images/logo.png" alt="VERA">
+      </a>
+
+      <nav class="navbar">
+        <a href="#">Novidades</a>
+        <a href="#">Alianças</a>
+        <a href="#">Noivado</a>
+        <a href="#">Casamento</a>
+        <a href="#">Coleções</a>
+      </nav>
+
+      <div class="header-actions">
+
+        <div class="search-box">
+          <input type="text" placeholder="Buscar produtos...">
+          <i class="fa-solid fa-search"></i>
+        </div>
+
+        <a href="favorites.html" class="icon-link">
+          <i class="fa-regular fa-heart"></i>
+        </a>
+
+        <a href="cart.html" class="cart-icon icon-link">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span class="cart-count">0</span>
+        </a>
+
+        <a href="login.html" class="icon-link">
+          <i class="fa-regular fa-user"></i>
+        </a>
+
+        <div class="menu-toggle" id="mobile-menu-btn">
+          <i class="fa-solid fa-bars"></i>
+        </div>
+
+      </div>
+
+    </div>
+  </header>
+
+  <section class="hero">
+
+    <!-- Apresentação 1 -->
+
+    <div class="hero-slide active">
+
+      <img src="assets/images/anel_01.jpg" alt="">
+
+      <div class="hero-overlay"></div>
+
+      <div class="hero-content">
+
+        <span>
+          Especial Dia dos Namorados
+        </span>
+
+        <h1>
+          Símbolos de um Amor Eterno
+        </h1>
+
+        <a href="produtos.html" class="btn-primary">
+          Descobrir Coleção
+        </a>
+
+      </div>
+
+    </div>
+
+    <!-- Apresentação 2 -->
+
+    <div class="hero-slide">
+
+      <img src="assets/images/anel_02.jpg" alt="">
+
+      <div class="hero-overlay"></div>
+
+      <div class="hero-content">
+
+        <span>
+          Coleção Noivado
+        </span>
+
+        <h1>
+          Cada Detalhe Conta uma História
+        </h1>
+
+        <a href="produtos.html" class="btn-primary">
+          Explorar
+        </a>
+
+      </div>
+
+    </div>
+
+    <!-- Apresentação 03 -->
+
+    <div class="hero-slide">
+
+      <img src="assets/images/anel_03.jpg" alt="">
+
+      <div class="hero-overlay"></div>
+
+      <div class="hero-content">
+
+        <span>
+          Luxo Atemporal
+        </span>
+
+        <h1>
+          Alianças Feitas para Eternizar Momentos
+        </h1>
+
+        <a href="produtos.html" class="btn-primary">
+          Ver Produtos
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <section class="featured-products">
+
+    <div class="section-header">
+      <span>Coleção Premium</span>
+      <h2>Produtos em Destaque</h2>
+    </div>
+
+    <div class="products-grid">
+
+      <div class="product-card">
+        <div class="product-image">
+          <img src="assets/images/anel_06.jpg" alt="">
+          <button class="favorite-btn">
+            <i class="fa-regular fa-heart"></i>
+          </button>
+        </div>
+
+        <div class="product-info">
+          <h3>Crystal Necklace</h3>
+          <p>Luxo contemporâneo</p>
+
+          <div class="product-bottom">
+            <span class="price">R$ 1.490</span>
+
+            <button class="add-cart">
+              Adicionar
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="luxury-banner">
+
+    <div class="banner-content">
+      <span>Exclusividade</span>
+      <h2>Design Refinado para Pessoas Extraordinárias</h2>
+      <p>
+        Uma experiência premium inspirada nas maiores maisons de luxo do mundo.
+      </p>
+
+      <a href="produtos.html" class="btn-secondary">
+        Explorar Coleção
+      </a>
+    </div>
+
+  </section>
+
+  <section class="newsletter">
+
+    <div class="newsletter-content">
+      <span>Newsletter Premium</span>
+      <h2>Receba Novidades Exclusivas</h2>
+
+      <form>
+        <input type="email" placeholder="Seu e-mail">
+        <button>
+          Assinar
+        </button>
+      </form>
+    </div>
+
+  </section>
+
+  <footer class="footer">
+
+    <div class="footer-grid">
+
+      <div>
+        <h3>VERA</h3>
+        <p>
+          Marketplace premium inspirado na sofisticação das maiores marcas de luxo internacionais.
+        </p>
+      </div>
+
+      <div>
+        <h4>Navegação</h4>
+        <a href="#">Produtos</a>
+        <a href="#">Categorias</a>
+        <a href="#">Promoções</a>
+      </div>
+
+      <div>
+        <h4>Suporte</h4>
+        <a href="#">Contato</a>
+        <a href="#">FAQ</a>
+        <a href="#">Privacidade</a>
+      </div>
+
+      <div>
+        <h4>Redes Sociais</h4>
+
+        <div class="socials">
+          <i class="fa-brands fa-instagram"></i>
+          <i class="fa-brands fa-pinterest"></i>
+          <i class="fa-brands fa-facebook-f"></i>
+        </div>
+      </div>
+
+    </div>
+
+  </footer>
+
+  <script src="js/script.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/favorites.js"></script>
+
+</body>
+
+</html>
