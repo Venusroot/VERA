@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Login | VERA</title>
+  <link rel="icon" type="image/png" href="assets/images/faricon.png" />
+  <!-- Exportando a fonte: Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <link rel="stylesheet" href="css/login.css" />
+</head>
+
+<body>
+  <!-- Carregamento da tela -->
+  <div class="loader">
+    <img src="assets/images/logo.png" alt="" />
+  </div>
+
+  <!-- LOGIN -->
+
+  <!-- Botão de voltar-->
+  <section class="auth-page">
+    <a href="index.html" class="back-button"> ← Voltar </a>
+
+    <!-- LADO VISUAL -->
+    <div class="auth-visual">
+      <div class="overlay"></div>
+
+      <div class="visual-content">
+
+        <img src="assets/images/logo.png" class="visual-logo" alt="VERA Logo">
+
+        <span class="mini-text"> EXPERIÊNCIA PREMIUM </span>
+
+        <h1>Elegância em cada detalhe</h1>
+
+        <p>
+          Descubra uma experiência exclusiva inspirada nos momentos
+          marcas de
+          luxo do mundo.
+        </p>
+      </div>
+    </div>
+
+    <!-- FORMULÁRIO -->
+    <div class="auth-form-side">
+      <div class="auth-container">
+        <img src="assets/images/logo.png" class="form-logo mobile-logo" alt="Logo" />
+
+        <span class="form-mini-title"> BEM-VINDO DE VOLTA </span>
+
+        <h2>Entrar</h2>
+
+        <p class="form-description">
+          Acesse sua conta para continuar sua experiência premium.
+        </p>
+
+        <form class="auth-form">
+          <!-- EMAIL -->
+          <div class="input-group">
+            <input type="email" required />
+            <label>E-mail</label>
+          </div>
+
+          <!-- SENHA -->
+          <div class="input-group password-group">
+            <input type="password" id="password" required />
+
+            <label>Senha</label>
+
+            <i class="fa-regular fa-eye toggle-password"></i>
+          </div>
+
+          <!-- OPÇÕES -->
+          <div class="form-options">
+            <label class="remember">
+              <input type="checkbox" />
+              Lembrar-me
+            </label>
+
+            <a href="#"> Esqueceu a senha? </a>
+          </div>
+
+          <!-- BOTÃO -->
+          <button type="submit" class="login-btn">
+            <span>Entrar</span>
+          </button>
+        </form>
+
+        <!-- DIVISOR -->
+        <div class="divider">
+          <span>ou continue com</span>
+        </div>
+
+        <!-- LOGIN SOCIAL -->
+        <div class="social-login">
+          <button>
+            <i class="fa-brands fa-google"></i>
+            Google
+          </button>
+
+          <button>
+            <i class="fa-brands fa-apple"></i>
+            Apple
+          </button>
+        </div>
+
+        <!-- CADASTRO -->
+        <p class="signup-text">
+          Ainda não possui conta?
+          <a href="#">Criar conta</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <script src="js/login.js"></script>
+</body>
+
+</html>
