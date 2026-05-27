@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Produtos - VERA</title>
+
+  <link rel="icon" type="image/png" href="assets/images/favicon.png" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="stylesheet" href="css/produtos.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
+
+<body>
+
+  <div class="loader">
+    <div class="loader-logo">
+      <img src="assets/images/logo.png" alt="VERA Logo">
+    </div>
+  </div>
+
+  <header class="header">
+    <div class="top-header">
+      <a href="index.html" class="logo">
+        <img src="assets/images/logo.png" alt="VERA">
+      </a>
+
+      <nav class="navbar">
+        <a href="#">Novidades</a>
+        <a href="#">Alianças</a>
+        <a href="#">Noivado</a>
+        <a href="#">Casamento</a>
+        <a href="#">Coleções</a>
+      </nav>
+
+      <div class="header-actions">
+        <div class="search-box">
+          <input type="text" id="search-input" placeholder="Buscar produtos...">
+          <i class="fa-solid fa-search"></i>
+        </div>
+
+        <a href="favorites.html" class="icon-link" aria-label="Favoritos">
+          <i class="fa-regular fa-heart"></i>
+        </a>
+
+        <a href="cart.html" class="cart-icon icon-link" aria-label="Sacola">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span class="cart-count">0</span>
+        </a>
+
+        <a href="login.html" class="icon-link" aria-label="Minha conta">
+          <i class="fa-regular fa-user"></i>
+        </a>
+
+        <button class="menu-toggle" id="mobile-menu-btn" type="button" aria-label="Abrir menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="products-page-container">
+
+    <aside class="filters-sidebar">
+      <div class="filter-title">
+        <h2>Filtrar Por</h2>
+      </div>
+
+      <div class="filter-group active">
+        <button class="filter-group-header" type="button" aria-expanded="true">
+          <h3>Liga Metálica</h3>
+          <i class="fa-solid fa-chevron-down toggle-icon"></i>
+        </button>
+
+        <div class="filter-group-content">
+          <label class="filter-item">
+            <input type="checkbox" class="filter-checkbox" name="metal" value="ouro-amarelo">
+            <span>Ouro Amarelo 18k</span>
+          </label>
+
+          <label class="filter-item">
+            <input type="checkbox" class="filter-checkbox" name="metal" value="ouro-branco">
+            <span>Ouro Branco 18k</span>
+          </label>
+
+          <label class="filter-item">
+            <input type="checkbox" class="filter-checkbox" name="metal" value="ouro-rose">
+            <span>Ouro Rosé 18k</span>
+          </label>
+
+          <label class="filter-item">
+            <input type="checkbox" class="filter-checkbox" name="metal" value="platina">
+            <span>Platina 950</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="filter-group active">
+        <button class="filter-group-header" type="button" aria-expanded="true">
+          <h3>Categoria</h3>
+          <i class="fa-solid fa-chevron-down toggle-icon"></i>
+        </button>
+
+        <div class="filter-group-content">
+          <label class="filter-item">
+            <input type="checkbox" class="filter-checkbox" name="category" value="alianca">
+            <span>Alianças</span>
+          </label>
+
+          <label class="filter-item">
+            <input type="checkbox" class="filter-checkbox" name="category" value="noivado">
+            <span>Anéis de Noivado</span>
+          </label>
+
+          <label class="filter-item">
+            <input type="checkbox" class="filter-checkbox" name="category" value="casamento">
+            <span>Alianças de Casamento</span>
+          </label>
+
+          <label class="filter-item">
+            <input type="checkbox" class="filter-checkbox" name="category" value="namoro">
+            <span>Alianças de Namoro</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="filter-group active">
+        <button class="filter-group-header" type="button" aria-expanded="true">
+          <h3>Faixa de Valor</h3>
+          <i class="fa-solid fa-chevron-down toggle-icon"></i>
+        </button>
+
+        <div class="filter-group-content">
+          <div class="price-range">
+            <input type="range" id="price-slider" min="1000" max="30000" step="500" value="30000">
+
+            <div class="price-output">
+              <span>R$ 1.000</span>
+              <span id="price-display" class="current-price">Até R$ 30.000</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button class="clear-filters" id="clear-filters" type="button">Limpar filtros</button>
+    </aside>
+
+    <section class="featured-products display-section">
+      <div class="products-grid">
+
+        <div class="product-card" data-metal="ouro-branco" data-category="noivado" data-price="12500">
+          <div class="product-image">
+            <div class="img-gallery">
+              <img src="assets/images/anel_06.jpg" alt="Solitário Eclat">
+              <img src="assets/images/anel_01.jpg" alt="Solitário Eclat Foto 2">
+              <img src="assets/images/anel_02.jpg" alt="Solitário Eclat Foto 3">
+            </div>
+            <button class="favorite-btn" type="button" aria-label="Adicionar Solitário Eclat aos favoritos">
+              <i class="fa-regular fa-heart"></i>
+            </button>
+          </div>
+
+          <div class="product-info">
+            <h3>Solitário Eclat</h3>
+            <p>Ouro Branco 18k e Diamante</p>
+            <div class="product-bottom">
+              <span class="price">R$ 12.500</span>
+              <button class="view-product" type="button">Ver Detalhes</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-metal="ouro-amarelo" data-category="alianca" data-price="4800">
+          <div class="product-image">
+            <div class="img-gallery">
+              <img src="assets/images/anel_01.jpg" alt="Aliança Eternity">
+              <img src="assets/images/anel_02.jpg" alt="Aliança Eternity Foto 2">
+            </div>
+            <button class="favorite-btn" type="button" aria-label="Adicionar Aliança Eternity aos favoritos">
+              <i class="fa-regular fa-heart"></i>
+            </button>
+          </div>
+
+          <div class="product-info">
+            <h3>Aliança Eternity</h3>
+            <p>Ouro Amarelo 18k Clássico</p>
+            <div class="product-bottom">
+              <span class="price">R$ 4.800</span>
+              <button class="view-product" type="button">Ver Detalhes</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-metal="ouro-rose" data-category="namoro" data-price="3900">
+          <div class="product-image">
+            <div class="img-gallery">
+              <img src="assets/images/anel_03.jpg" alt="Aliança Aurora">
+              <img src="assets/images/anel_06.jpg" alt="Aliança Aurora Foto 2">
+            </div>
+            <button class="favorite-btn" type="button" aria-label="Adicionar Aliança Aurora aos favoritos">
+              <i class="fa-regular fa-heart"></i>
+            </button>
+          </div>
+
+          <div class="product-info">
+            <h3>Aliança Aurora</h3>
+            <p>Ouro Rosé 18k Polido</p>
+            <div class="product-bottom">
+              <span class="price">R$ 3.900</span>
+              <button class="view-product" type="button">Ver Detalhes</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-metal="platina" data-category="noivado" data-price="19800">
+          <div class="product-image">
+            <div class="img-gallery">
+              <img src="assets/images/anel_02.jpg" alt="Anel Royale Platina">
+              <img src="assets/images/anel_06.jpg" alt="Anel Royale Foto 2">
+            </div>
+            <button class="favorite-btn" type="button" aria-label="Adicionar Anel Royale aos favoritos">
+              <i class="fa-regular fa-heart"></i>
+            </button>
+          </div>
+
+          <div class="product-info">
+            <h3>Anel Royale</h3>
+            <p>Platina 950 com Brilhantes</p>
+            <div class="product-bottom">
+              <span class="price">R$ 19.800</span>
+              <button class="view-product" type="button">Ver Detalhes</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-metal="ouro-amarelo" data-category="casamento" data-price="7200">
+          <div class="product-image">
+            <div class="img-gallery">
+              <img src="assets/images/anel_03.jpg" alt="Aliança Elo">
+              <img src="assets/images/anel_01.jpg" alt="Aliança Elo Foto 2">
+            </div>
+            <button class="favorite-btn" type="button" aria-label="Adicionar Aliança Elo aos favoritos">
+              <i class="fa-regular fa-heart"></i>
+            </button>
+          </div>
+
+          <div class="product-info">
+            <h3>Aliança Elo</h3>
+            <p>Ouro Amarelo 18k Acetinado</p>
+            <div class="product-bottom">
+              <span class="price">R$ 7.200</span>
+              <button class="view-product" type="button">Ver Detalhes</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-metal="ouro-rose" data-category="noivado" data-price="8900">
+          <div class="product-image">
+            <div class="img-gallery">
+              <img src="assets/images/anel_01.jpg" alt="Anel Blush Bloom">
+              <img src="assets/images/anel_02.jpg" alt="Anel Blush Bloom Foto 2">
+            </div>
+            <button class="favorite-btn" type="button" aria-label="Adicionar Anel Blush Bloom aos favoritos">
+              <i class="fa-regular fa-heart"></i>
+            </button>
+          </div>
+
+          <div class="product-info">
+            <h3>Anel Blush Bloom</h3>
+            <p>Ouro Rosé 18k Morganita</p>
+            <div class="product-bottom">
+              <span class="price">R$ 8.900</span>
+              <button class="view-product" type="button">Ver Detalhes</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-metal="ouro-branco" data-category="alianca" data-price="5200">
+          <div class="product-image">
+            <div class="img-gallery">
+              <img src="assets/images/anel_02.jpg" alt="Aliança Orion">
+              <img src="assets/images/anel_03.jpg" alt="Aliança Orion Foto 2">
+            </div>
+            <button class="favorite-btn" type="button" aria-label="Adicionar Aliança Orion aos favoritos">
+              <i class="fa-regular fa-heart"></i>
+            </button>
+          </div>
+
+          <div class="product-info">
+            <h3>Aliança Orion</h3>
+            <p>Ouro Branco 18k Comfort</p>
+            <div class="product-bottom">
+              <span class="price">R$ 5.200</span>
+              <button class="view-product" type="button">Ver Detalhes</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-metal="ouro-amarelo" data-category="namoro" data-price="3100">
+          <div class="product-image">
+            <div class="img-gallery">
+              <img src="assets/images/anel_03.jpg" alt="Aliança Gota">
+              <img src="assets/images/anel_06.jpg" alt="Aliança Gota Foto 2">
+            </div>
+            <button class="favorite-btn" type="button" aria-label="Adicionar Aliança Gota aos favoritos">
+              <i class="fa-regular fa-heart"></i>
+            </button>
+          </div>
+
+          <div class="product-info">
+            <h3>Aliança Gota</h3>
+            <p>Ouro Amarelo 18k Polido</p>
+            <div class="product-bottom">
+              <span class="price">R$ 3.100</span>
+              <button class="view-product" type="button">Ver Detalhes</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-metal="platina" data-category="alianca" data-price="11500">
+          <div class="product-image">
+            <div class="img-gallery">
+              <img src="assets/images/anel_01.jpg" alt="Aliança Absolute">
+              <img src="assets/images/anel_02.jpg" alt="Aliança Absolute Foto 2">
+            </div>
+            <button class="favorite-btn" type="button" aria-label="Adicionar Aliança Absolute aos favoritos">
+              <i class="fa-regular fa-heart"></i>
+            </button>
+          </div>
+
+          <div class="product-info">
+            <h3>Aliança Absolute</h3>
+            <p>Platina 950 com Diamantes Slim</p>
+            <div class="product-bottom">
+              <span class="price">R$ 11.500</span>
+              <button class="view-product" type="button">Ver Detalhes</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-metal="ouro-branco" data-category="casamento" data-price="6400">
+          <div class="product-image">
+            <div class="img-gallery">
+              <img src="assets/images/anel_06.jpg" alt="Aliança Infinito">
+              <img src="assets/images/anel_01.jpg" alt="Aliança Infinito Foto 2">
+            </div>
+            <button class="favorite-btn" type="button" aria-label="Adicionar Aliança Infinito aos favoritos">
+              <i class="fa-regular fa-heart"></i>
+            </button>
+          </div>
+
+          <div class="product-info">
+            <h3>Aliança Infinito</h3>
+            <p>Ouro Branco 18k com Diamante</p>
+            <div class="product-bottom">
+              <span class="price">R$ 6.400</span>
+              <button class="view-product" type="button">Ver Detalhes</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-metal="ouro-rose" data-category="namoro" data-price="2800">
+          <div class="product-image">
+            <div class="img-gallery">
+              <img src="assets/images/anel_02.jpg" alt="Aliança Aurora Slim">
+              <img src="assets/images/anel_03.jpg" alt="Aliança Aurora Slim Foto 2">
+            </div>
+            <button class="favorite-btn" type="button" aria-label="Adicionar Aliança Aurora Slim aos favoritos">
+              <i class="fa-regular fa-heart"></i>
+            </button>
+          </div>
+
+          <div class="product-info">
+            <h3>Aliança Aurora Slim</h3>
+            <p>Ouro Rosé 18k Delicada</p>
+            <div class="product-bottom">
+              <span class="price">R$ 2.800</span>
+              <button class="view-product" type="button">Ver Detalhes</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-metal="ouro-amarelo" data-category="noivado" data-price="9400">
+          <div class="product-image">
+            <div class="img-gallery">
+              <img src="assets/images/anel_03.jpg" alt="Solitário Primrose">
+              <img src="assets/images/anel_01.jpg" alt="Solitário Primrose Foto 2">
+            </div>
+            <button class="favorite-btn" type="button" aria-label="Adicionar Solitário Primrose aos favoritos">
+              <i class="fa-regular fa-heart"></i>
+            </button>
+          </div>
+
+          <div class="product-info">
+            <h3>Solitário Primrose</h3>
+            <p>Ouro Amarelo 18k Clássico</p>
+            <div class="product-bottom">
+              <span class="price">R$ 9.400</span>
+              <button class="view-product" type="button">Ver Detalhes</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-metal="ouro-branco" data-category="casamento" data-price="7800">
+          <div class="product-image">
+            <div class="img-gallery">
+              <img src="assets/images/anel_01.jpg" alt="Aliança Lumine">
+              <img src="assets/images/anel_06.jpg" alt="Aliança Lumine Foto 2">
+            </div>
+            <button class="favorite-btn" type="button" aria-label="Adicionar Aliança Lumine aos favoritos">
+              <i class="fa-regular fa-heart"></i>
+            </button>
+          </div>
+
+          <div class="product-info">
+            <h3>Aliança Lumine</h3>
+            <p>Ouro Branco 18k Cravejado</p>
+            <div class="product-bottom">
+              <span class="price">R$ 7.800</span>
+              <button class="view-product" type="button">Ver Detalhes</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-metal="ouro-amarelo" data-category="alianca" data-price="3900">
+          <div class="product-image">
+            <div class="img-gallery">
+              <img src="assets/images/anel_02.jpg" alt="Aliança Unity">
+              <img src="assets/images/anel_03.jpg" alt="Aliança Unity Foto 2">
+            </div>
+            <button class="favorite-btn" type="button" aria-label="Adicionar Aliança Unity aos favoritos">
+              <i class="fa-regular fa-heart"></i>
+            </button>
+          </div>
+
+          <div class="product-info">
+            <h3>Aliança Unity</h3>
+            <p>Ouro Amarelo Fosco 4mm</p>
+            <div class="product-bottom">
+              <span class="price">R$ 3.900</span>
+              <button class="view-product" type="button">Ver Detalhes</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-metal="ouro-rose" data-category="namoro" data-price="4200">
+          <div class="product-image">
+            <div class="img-gallery">
+              <img src="assets/images/anel_03.jpg" alt="Aliança Heart">
+              <img src="assets/images/anel_02.jpg" alt="Aliança Heart Foto 2">
+            </div>
+            <button class="favorite-btn" type="button" aria-label="Adicionar Aliança Heart aos favoritos">
+              <i class="fa-regular fa-heart"></i>
+            </button>
+          </div>
+
+          <div class="product-info">
+            <h3>Aliança Heart</h3>
+            <p>Ouro Rosé 18k com Rubi</p>
+            <div class="product-bottom">
+              <span class="price">R$ 4.200</span>
+              <button class="view-product" type="button">Ver Detalhes</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-metal="platina" data-category="noivado" data-price="24500">
+          <div class="product-image">
+            <div class="img-gallery">
+              <img src="assets/images/anel_06.jpg" alt="Solitário Majestic">
+              <img src="assets/images/anel_01.jpg" alt="Solitário Majestic Foto 2">
+            </div>
+            <button class="favorite-btn" type="button" aria-label="Adicionar Solitário Majestic aos favoritos">
+              <i class="fa-regular fa-heart"></i>
+            </button>
+          </div>
+
+          <div class="product-info">
+            <h3>Solitário Majestic</h3>
+            <p>Platina 950 Diamante Central 50pt</p>
+            <div class="product-bottom">
+              <span class="price">R$ 24.500</span>
+              <button class="view-product" type="button">Ver Detalhes</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-metal="ouro-amarelo" data-category="namoro" data-price="1950">
+          <div class="product-image">
+            <div class="img-gallery">
+              <img src="assets/images/anel_01.jpg" alt="Aliança Sol">
+              <img src="assets/images/anel_02.jpg" alt="Aliança Sol Foto 2">
+            </div>
+            <button class="favorite-btn" type="button" aria-label="Adicionar Aliança Sol aos favoritos">
+              <i class="fa-regular fa-heart"></i>
+            </button>
+          </div>
+
+          <div class="product-info">
+            <h3>Aliança Sol</h3>
+            <p>Ouro Amarelo Minimalista</p>
+            <div class="product-bottom">
+              <span class="price">R$ 1.950</span>
+              <button class="view-product" type="button">Ver Detalhes</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-metal="ouro-branco" data-category="alianca" data-price="8700">
+          <div class="product-image">
+            <div class="img-gallery">
+              <img src="assets/images/anel_02.jpg" alt="Aliança Opera">
+              <img src="assets/images/anel_03.jpg" alt="Aliança Opera Foto 2">
+            </div>
+            <button class="favorite-btn" type="button" aria-label="Adicionar Aliança Opera aos favoritos">
+              <i class="fa-regular fa-heart"></i>
+            </button>
+          </div>
+
+          <div class="product-info">
+            <h3>Aliança Opera</h3>
+            <p>Ouro Branco Cravejada Meia Aliança</p>
+            <div class="product-bottom">
+              <span class="price">R$ 8.700</span>
+              <button class="view-product" type="button">Ver Detalhes</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-metal="ouro-rose" data-category="noivado" data-price="13200">
+          <div class="product-image">
+            <div class="img-gallery">
+              <img src="assets/images/anel_03.jpg" alt="Tiara Noivado Heart">
+              <img src="assets/images/anel_06.jpg" alt="Tiara Noivado Heart Foto 2">
+            </div>
+            <button class="favorite-btn" type="button" aria-label="Adicionar Tiara Noivado Heart aos favoritos">
+              <i class="fa-regular fa-heart"></i>
+            </button>
+          </div>
+
+          <div class="product-info">
+            <h3>Tiara Noivado Heart</h3>
+            <p>Ouro Rosé Lapidação Coração</p>
+            <div class="product-bottom">
+              <span class="price">R$ 13.200</span>
+              <button class="view-product" type="button">Ver Detalhes</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card" data-metal="ouro-amarelo" data-category="casamento" data-price="15800">
+          <div class="product-image">
+            <div class="img-gallery">
+              <img src="assets/images/anel_01.jpg" alt="Aliança Riviera">
+              <img src="assets/images/anel_02.jpg" alt="Aliança Riviera Foto 2">
+            </div>
+            <button class="favorite-btn" type="button" aria-label="Adicionar Aliança Riviera aos favoritos">
+              <i class="fa-regular fa-heart"></i>
+            </button>
+          </div>
+
+          <div class="product-info">
+            <h3>Aliança Riviera</h3>
+            <p>Ouro Amarelo com Diamantes Clássicos</p>
+            <div class="product-bottom">
+              <span class="price">R$ 15.800</span>
+              <button class="view-product" type="button">Ver Detalhes</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <p class="no-results" id="no-results" hidden>Nenhum produto encontrado.</p>
+    </section>
+  </main>
+
+  <div class="product-modal" id="product-modal" aria-hidden="true">
+    <div class="modal-overlay"></div>
+
+    <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <button class="close-modal" type="button" aria-label="Fechar detalhes do produto">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <div class="modal-gallery">
+        <div class="main-image">
+          <img id="modal-main-image" src="" alt="">
+        </div>
+
+        <div class="thumbnail-gallery"></div>
+      </div>
+
+      <div class="modal-details">
+        <span class="modal-category" id="modal-category">Coleção VERA</span>
+
+        <h2 id="modal-title">Solitário Eclat</h2>
+
+        <p class="modal-description" id="modal-description">
+          Uma peça criada para eternizar momentos únicos com acabamento refinado em ouro 18k.
+        </p>
+
+        <div class="modal-price" id="modal-price">R$ 12.500</div>
+
+        <div class="payment-options">
+          <div class="payment-card">
+            <i class="fa-brands fa-pix"></i>
+
+            <div>
+              <strong>Pix</strong>
+              <span>5% OFF à vista</span>
+            </div>
+          </div>
+
+          <div class="payment-card">
+            <i class="fa-regular fa-credit-card"></i>
+
+            <div>
+              <strong>Cartão de Crédito</strong>
+              <span>Até 10x sem juros</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="size-selector">
+          <h4>Tamanho</h4>
+
+          <div class="sizes">
+            <button type="button">14</button>
+            <button type="button">15</button>
+            <button class="active" type="button">16</button>
+            <button type="button">17</button>
+            <button type="button">18</button>
+          </div>
+        </div>
+
+        <div class="cep-box">
+          <h4>Entrega</h4>
+
+          <div class="cep-input">
+            <input type="text" placeholder="Digite seu CEP">
+            <button type="button">Calcular</button>
+          </div>
+        </div>
+
+        <div class="modal-actions">
+          <button class="btn-outline" type="button">Adicionar à Sacola</button>
+          <button class="btn-dark" type="button">Comprar Agora</button>
+        </div>
+
+        <div class="modal-benefits">
+          <div>
+            <i class="fa-solid fa-shield"></i>
+            Certificado de autenticidade
+          </div>
+
+          <div>
+            <i class="fa-solid fa-gift"></i>
+            Embalagem premium VERA
+          </div>
+
+          <div>
+            <i class="fa-solid fa-lock"></i>
+            Compra 100% segura
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/favorites.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const categoryNames = {
+        alianca: 'Alianças',
+        noivado: 'Anéis de Noivado',
+        casamento: 'Alianças de Casamento',
+        namoro: 'Alianças de Namoro'
+      };
+
+      const filterHeaders = document.querySelectorAll('.filter-group-header');
+      const checkboxes = document.querySelectorAll('.filter-checkbox');
+      const priceSlider = document.getElementById('price-slider');
+      const priceDisplay = document.getElementById('price-display');
+      const searchInput = document.getElementById('search-input');
+      const clearFiltersButton = document.getElementById('clear-filters');
+      const products = document.querySelectorAll('.product-card');
+      const noResults = document.getElementById('no-results');
+
+      filterHeaders.forEach(header => {
+        header.addEventListener('click', () => {
+          const group = header.closest('.filter-group');
+          const isActive = group.classList.toggle('active');
+
+          header.setAttribute('aria-expanded', String(isActive));
+        });
+      });
+
+      function updatePriceDisplay() {
+        const value = Number(priceSlider.value).toLocaleString('pt-BR');
+        priceDisplay.textContent = `Até R$ ${value}`;
+      }
+
+      function getCheckedValues(name) {
+        return Array.from(checkboxes)
+          .filter(input => input.name === name && input.checked)
+          .map(input => input.value);
+      }
+
+      function filterProducts() {
+        const maxPrice = Number(priceSlider.value);
+        const searchQuery = searchInput ? searchInput.value.trim().toLowerCase() : '';
+        const activeMetals = getCheckedValues('metal');
+        const activeCategories = getCheckedValues('category');
+        let visibleCount = 0;
+
+        products.forEach(product => {
+          const productPrice = Number(product.dataset.price);
+          const productMetal = product.dataset.metal;
+          const productCategory = product.dataset.category;
+          const productTitle = product.querySelector('h3').textContent.toLowerCase();
+          const productDescription = product.querySelector('p').textContent.toLowerCase();
+
+          const matchPrice = productPrice <= maxPrice;
+          const matchMetal = activeMetals.length === 0 || activeMetals.includes(productMetal);
+          const matchCategory = activeCategories.length === 0 || activeCategories.includes(productCategory);
+          const matchSearch = !searchQuery || productTitle.includes(searchQuery) || productDescription.includes(searchQuery);
+          const shouldShow = matchPrice && matchMetal && matchCategory && matchSearch;
+
+          product.hidden = !shouldShow;
+
+          if (shouldShow) {
+            visibleCount += 1;
+          }
+        });
+
+        if (noResults) {
+          noResults.hidden = visibleCount > 0;
+        }
+      }
+
+      checkboxes.forEach(checkbox => checkbox.addEventListener('change', filterProducts));
+
+      priceSlider.addEventListener('input', () => {
+        updatePriceDisplay();
+        filterProducts();
+      });
+
+      if (searchInput) {
+        searchInput.addEventListener('input', filterProducts);
+      }
+
+      if (clearFiltersButton) {
+        clearFiltersButton.addEventListener('click', () => {
+          checkboxes.forEach(checkbox => {
+            checkbox.checked = false;
+          });
+
+          priceSlider.value = priceSlider.max;
+
+          if (searchInput) {
+            searchInput.value = '';
+          }
+
+          updatePriceDisplay();
+          filterProducts();
+        });
+      }
+
+      const modal = document.getElementById('product-modal');
+      const closeModal = document.querySelector('.close-modal');
+      const overlay = document.querySelector('.modal-overlay');
+      const modalCategory = document.getElementById('modal-category');
+      const modalTitle = document.getElementById('modal-title');
+      const modalDescription = document.getElementById('modal-description');
+      const modalPrice = document.getElementById('modal-price');
+      const modalMainImage = document.getElementById('modal-main-image');
+      const thumbnailGallery = document.querySelector('.thumbnail-gallery');
+      const viewButtons = document.querySelectorAll('.view-product');
+
+      function closeProductModal() {
+        modal.classList.remove('active');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      }
+
+      viewButtons.forEach(button => {
+        button.addEventListener('click', event => {
+          event.stopPropagation();
+
+          const card = button.closest('.product-card');
+          const title = card.querySelector('h3').textContent;
+          const price = card.querySelector('.price').textContent;
+          const description = card.querySelector('.product-info p').textContent;
+          const category = card.dataset.category;
+          const galleryImages = card.querySelectorAll('.img-gallery img');
+
+          modalTitle.textContent = title;
+          modalPrice.textContent = price;
+          modalDescription.textContent = description;
+          modalCategory.textContent = categoryNames[category] || 'Coleção VERA';
+          thumbnailGallery.innerHTML = '';
+
+          galleryImages.forEach((img, index) => {
+            const imageSrc = img.src;
+            const thumb = document.createElement('img');
+
+            thumb.src = imageSrc;
+            thumb.alt = img.alt;
+            thumb.classList.add('thumb');
+
+            if (index === 0) {
+              modalMainImage.src = imageSrc;
+              modalMainImage.alt = img.alt;
+              thumb.classList.add('active');
+            }
+
+            thumb.addEventListener('click', () => {
+              thumbnailGallery
+                .querySelectorAll('.thumb')
+                .forEach(item => item.classList.remove('active'));
+
+              thumb.classList.add('active');
+              modalMainImage.style.opacity = 0;
+
+              setTimeout(() => {
+                modalMainImage.src = imageSrc;
+                modalMainImage.alt = img.alt;
+                modalMainImage.style.opacity = 1;
+              }, 180);
+            });
+
+            thumbnailGallery.appendChild(thumb);
+          });
+
+          modal.classList.add('active');
+          modal.setAttribute('aria-hidden', 'false');
+          document.body.style.overflow = 'hidden';
+        });
+      });
+
+      closeModal.addEventListener('click', closeProductModal);
+      overlay.addEventListener('click', closeProductModal);
+
+      document.addEventListener('keydown', event => {
+        if (event.key === 'Escape' && modal.classList.contains('active')) {
+          closeProductModal();
+        }
+      });
+
+      updatePriceDisplay();
+      filterProducts();
+    });
+  </script>
+</body>
+
+</html>
