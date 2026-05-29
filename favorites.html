@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Favoritos - VERA</title>
+
+  <link rel="icon" type="image/png" href="assets/images/favicon.png" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="stylesheet" href="css/produtos.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <style>
+    .favorites-container {
+      max-width: 1400px;
+      margin: 140px auto 60px;
+      padding: 0 40px;
+    }
+
+    .favorites-header {
+      margin-bottom: 40px;
+    }
+
+    .favorites-header h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    .favorites-empty {
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    .favorites-empty i {
+      font-size: 4rem;
+      color: var(--gold);
+      margin-bottom: 20px;
+      opacity: 0.7;
+    }
+
+    .favorites-empty p {
+      font-size: 1.1rem;
+      color: var(--text);
+      margin-bottom: 30px;
+    }
+
+    .favorites-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+
+    .favorite-item {
+      background: var(--white);
+      border: 1px solid #eee;
+      border-radius: 8px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .favorite-item:hover {
+      box-shadow: var(--shadow);
+      transform: translateY(-5px);
+    }
+
+    .favorite-item img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+
+    .favorite-info {
+      padding: 20px;
+    }
+
+    .favorite-info h3 {
+      font-size: 1.1rem;
+      margin-bottom: 5px;
+    }
+
+    .favorite-info p {
+      font-size: 0.85rem;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+
+    .favorite-price {
+      font-size: 1.2rem;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+
+    .favorite-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .favorite-actions button {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid var(--gold);
+      background: transparent;
+      color: var(--gold);
+      cursor: pointer;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      transition: all 0.3s;
+    }
+
+    .favorite-actions button:hover {
+      background: var(--gold);
+      color: var(--white);
+    }
+
+    .favorite-actions button.remove {
+      border-color: #d32f2f;
+      color: #d32f2f;
+    }
+
+    .favorite-actions button.remove:hover {
+      background: #d32f2f;
+      color: var(--white);
+    }
+
+    .back-to-products {
+      display: inline-block;
+      margin-bottom: 30px;
+      color: var(--gold);
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: 0.3s;
+    }
+
+    .back-to-products:hover {
+      gap: 5px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="loader">
+    <div class="loader-logo">
+      <img src="assets/images/logo.png" alt="VERA Logo">
+    </div>
+  </div>
+
+  <header class="header">
+    <div class="top-header">
+      <a href="index.html" class="logo">
+        <img src="assets/images/logo.png" alt="VERA">
+      </a>
+
+      <nav class="navbar">
+        <a href="#">Novidades</a>
+        <a href="#">Alianças</a>
+        <a href="#">Noivado</a>
+        <a href="#">Casamento</a>
+        <a href="#">Coleções</a>
+      </nav>
+
+      <div class="header-actions">
+        <div class="search-box">
+          <input type="text" placeholder="Buscar produtos...">
+          <i class="fa-solid fa-search"></i>
+        </div>
+
+        <a href="favorites.html" class="icon-link" aria-label="Favoritos">
+          <i class="fa-regular fa-heart"></i>
+        </a>
+
+        <a href="cart.html" class="cart-icon icon-link" aria-label="Sacola">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span class="cart-count">0</span>
+        </a>
+
+        <a href="login.html" class="icon-link" aria-label="Minha conta">
+          <i class="fa-regular fa-user"></i>
+        </a>
+
+        <button class="menu-toggle" id="mobile-menu-btn" type="button" aria-label="Abrir menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="favorites-container">
+    <a href="produtos.html" class="back-to-products">
+      <i class="fa-solid fa-arrow-left"></i> Voltar para produtos
+    </a>
+
+    <div class="favorites-header">
+      <h1>Meus Favoritos</h1>
+      <p>Produtos que você marcou como favorito</p>
+    </div>
+
+    <div id="favorites-content">
+      <!-- Será preenchido por JavaScript -->
+    </div>
+  </main>
+
+  <script src="js/usuarios.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/favorites.js"></script>
+
+  <script>
+    // Dados dos produtos para referência
+    const produtosData = [
+      { id: 0, nome: 'Solitário Eclat', desc: 'Ouro Branco 18k e Diamante', preco: '12.500', img: 'assets/images/anel_06.jpg' },
+      { id: 1, nome: 'Aliança Eternity', desc: 'Ouro Amarelo 18k Clássico', preco: '4.800', img: 'assets/images/anel_01.jpg' },
+      { id: 2, nome: 'Aliança Aurora', desc: 'Ouro Rosé 18k Polido', preco: '3.900', img: 'assets/images/anel_03.jpg' },
+      { id: 3, nome: 'Anel Royale', desc: 'Platina 950 com Brilhantes', preco: '19.800', img: 'assets/images/anel_02.jpg' },
+      { id: 4, nome: 'Aliança Elo', desc: 'Ouro Amarelo 18k Sofisticada', preco: '7.200', img: 'assets/images/anel_03.jpg' },
+      { id: 5, nome: 'Tiara Noivado', desc: 'Ouro Rosé com Cristais', preco: '8.900', img: 'assets/images/anel_06.jpg' },
+      { id: 6, nome: 'Aliança Elegance', desc: 'Ouro Branco 18k Delicada', preco: '5.200', img: 'assets/images/anel_01.jpg' },
+      { id: 7, nome: 'Aliança Luxury', desc: 'Ouro Amarelo Cravejado', preco: '3.100', img: 'assets/images/anel_02.jpg' },
+      { id: 8, nome: 'Tiara Platina', desc: 'Platina com Diamantes', preco: '11.500', img: 'assets/images/anel_01.jpg' },
+      { id: 9, nome: 'Aliança Infinito', desc: 'Ouro Branco 18k com Diamante', preco: '6.400', img: 'assets/images/anel_06.jpg' },
+      { id: 10, nome: 'Aliança Aurora Slim', desc: 'Ouro Rosé 18k Delicada', preco: '2.800', img: 'assets/images/anel_02.jpg' },
+      { id: 11, nome: 'Solitário Primrose', desc: 'Ouro Amarelo 18k Clássico', preco: '9.400', img: 'assets/images/anel_03.jpg' },
+      { id: 12, nome: 'Aliança Lumine', desc: 'Ouro Branco 18k Cravejado', preco: '7.800', img: 'assets/images/anel_01.jpg' },
+      { id: 13, nome: 'Aliança Unity', desc: 'Ouro Amarelo Fosco 4mm', preco: '3.900', img: 'assets/images/anel_02.jpg' },
+      { id: 14, nome: 'Tiara Noivado Heart', desc: 'Ouro Rosé Lapidação Coração', preco: '13.200', img: 'assets/images/anel_06.jpg' },
+      { id: 15, nome: 'Aliança Riviera', desc: 'Ouro Amarelo com Diamantes', preco: '15.800', img: 'assets/images/anel_01.jpg' }
+    ];
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const usuario = getUsuarioLogado();
+      const favContent = document.getElementById('favorites-content');
+
+      if (!usuario) {
+        favContent.innerHTML = `
+          <div class="favorites-empty">
+            <i class="fa-regular fa-heart"></i>
+            <p>Você precisa estar logado para ver seus favoritos</p>
+            <a href="login.html" class="btn-primary">Fazer Login</a>
+          </div>
+        `;
+        return;
+      }
+
+      const favoritos = getFavoritosDo Usuário();
+
+      if (favoritos.length === 0) {
+        favContent.innerHTML = `
+          <div class="favorites-empty">
+            <i class="fa-regular fa-heart"></i>
+            <p>Você ainda não tem produtos favoritados</p>
+            <a href="produtos.html" class="btn-primary">Explorar Produtos</a>
+          </div>
+        `;
+        return;
+      }
+
+      // Renderizar favoritos
+      const gridHtml = favoritos.map(prodId => {
+        const produto = produtosData[prodId];
+        if (!produto) return '';
+
+        return `
+          <div class="favorite-item">
+            <img src="${produto.img}" alt="${produto.nome}">
+            <div class="favorite-info">
+              <h3>${produto.nome}</h3>
+              <p>${produto.desc}</p>
+              <div class="favorite-price">R$ ${produto.preco}</div>
+              <div class="favorite-actions">
+                <button onclick="adicionarAoCarrinho(${prodId})">Adicionar ao Carrinho</button>
+                <button class="remove" onclick="removerFavorito(${prodId}); location.reload();">Remover</button>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      const grid = document.createElement('div');
+      grid.className = 'favorites-grid';
+      grid.innerHTML = gridHtml;
+      favContent.appendChild(grid);
+    });
+  </script>
+
+</body>
+
+</html>
