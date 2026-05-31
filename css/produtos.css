@@ -332,6 +332,37 @@
   animation: modalReveal 0.65s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+.close-modal {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  border-radius: 50%;
+
+  cursor: pointer;
+
+  z-index: 999;
+  padding: 0;
+  margin: 0;
+
+  font-size: 0;
+  /* impede crescimento do botão */
+}
+
+.close-modal i {
+  font-size: 18px;
+  color: #000;
+}
+
 .modal-gallery {
   padding: 28px;
   background: #fafafa;
@@ -927,13 +958,6 @@
     font-size: 1rem;
   }
 
-  .close-modal {
-    width: 40px;
-    height: 40px;
-    top: 16px;
-    right: 16px;
-    font-size: 1.2rem;
-  }
 
   .no-results {
     padding: 40px 16px;

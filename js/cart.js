@@ -1,45 +1,77 @@
-const cartMenuToggle = document.querySelector('.menu-toggle');
-const cartNavbar = document.querySelector('.navbar');
+document.addEventListener('DOMContentLoaded', () => {
+  renderCart();
 
-cartMenuToggle?.addEventListener('click', () => {
-  cartNavbar?.classList.toggle('active');
+  // sincroniza automaticamente quando carrinho muda
+  onCartChange(() => {
+    renderCart();
+  });
 });
 
-window.addEventListener('load', () => {
+function renderCart() {
+  const container = document.querySelector('.cart-items');
+  const totalEl = document.querySelector('.cart-summary h3');
 
-  setTimeout(() => {
-    document.querySelector('.loader').style.display = 'none';
-  }, 1500);
+  if (!container || !totalEl) return;
 
-});
+  const cart = getUserCart();
 
-window.addEventListener('scroll', () => {
+  // carrinho vazio
+  if (!cart.length) {
+    container.innerHTML = `
+      <div class="empty-cart">
+        <h2>Seu carrinho está vazio</h2>
+        <p>Explore nossos produtos e adicione itens à sacola.</p>
+      </div>
+    `;
 
-  const header = document.querySelector('.header');
-
-  if (window.scrollY > 50) {
-    header.classList.add('scrolled');
-  } else {
-    header.classList.remove('scrolled');
+    totalEl.textContent = 'Total: R$ 0,00';
+    return;
   }
 
-});
+  let html = '';
 
-function showToast(message) {
+  cart.forEach(item => {
+    html += `
+      <div class="cart-item">
+        
+        <img src="${item.image}" alt="${item.title}">
 
-  const toast = document.createElement('div');
+        <div class="cart-info">
+          <h3>${item.title}</h3>
+          <p>${item.category || ''}</p>
+          <span>${item.priceFormatted}</span>
+        </div>
 
-  toast.className = 'toast';
-  toast.innerText = message;
+        <div class="cart-actions">
 
-  document.body.appendChild(toast);
+          <button onclick="updateQty('${item.id}', -1)">-</button>
 
-  setTimeout(() => {
-    toast.classList.add('active');
-  }, 100);
+          <span>${item.quantity}</span>
 
-  setTimeout(() => {
-    toast.remove();
-  }, 3000);
+          <button onclick="updateQty('${item.id}', 1)">+</button>
 
+          <button class="remove-btn" onclick="removeItem('${item.id}')">
+            Remover
+          </button>
+
+        </div>
+
+      </div>
+    `;
+  });
+
+  container.innerHTML = html;
+
+  totalEl.textContent = `Total: ${getCartTotalFormatted()}`;
+}
+
+function updateQty(id, change) {
+  const item = getCartItem(id);
+  if (!item) return;
+
+  updateCartItemQuantity(id, item.quantity + change);
+}
+
+function removeItem(id) {
+  removeFromCart(id);
 }
