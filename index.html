@@ -35,10 +35,10 @@
 
       <nav class="navbar">
         <a href="#">Novidades</a>
-        <a href="#">Alianças</a>
-        <a href="#">Noivado</a>
-        <a href="#">Casamento</a>
-        <a href="#">Coleções</a>
+        <a href="produtos.html">Alianças</a>
+        <a href="produtos.html?category=noivado">Noivado</a>
+        <a href="produtos.html?category=casamento">Casamento</a>
+        <a href="produtos.html?category=colecoes">Coleções</a>
       </nav>
 
       <div class="header-actions">
@@ -57,9 +57,20 @@
           <span class="cart-count">0</span>
         </a>
 
-        <a href="login.html" class="icon-link">
-          <i class="fa-regular fa-user"></i>
-        </a>
+        <!-- User Menu Dropdown -->
+        <div class="user-menu-container">
+          <button class="icon-link user-menu-btn" id="user-menu-btn" title="Menu de usuário">
+            <i class="fa-regular fa-user"></i>
+            <span class="user-name" id="user-name"></span>
+          </button>
+
+          <div class="user-dropdown" id="user-dropdown">
+            <button class="logout-btn" id="logout-btn">
+              <i class="fa-solid fa-sign-out-alt"></i>
+              Sair da conta
+            </button>
+          </div>
+        </div>
 
         <div class="menu-toggle" id="mobile-menu-btn">
           <i class="fa-solid fa-bars"></i>
@@ -163,18 +174,62 @@
 
       <div class="product-card">
         <div class="product-image">
-          <img src="assets/images/anel_06.jpg" alt="">
+          <img src="assets/images/Destaque1.jpg" alt="">
           <button class="favorite-btn">
             <i class="fa-regular fa-heart"></i>
           </button>
         </div>
 
         <div class="product-info">
-          <h3>Crystal Necklace</h3>
-          <p>Luxo contemporâneo</p>
+          <h3>Solitário Eclipse</h3>
+          <p>Ouro 18k com diamante certificado</p>
 
           <div class="product-bottom">
-            <span class="price">R$ 1.490</span>
+            <span class="price">R$ 8.990</span>
+
+            <button class="add-cart">
+              Adicionar
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-image">
+          <img src="assets/images/Destaque2.jpg" alt="">
+          <button class="favorite-btn">
+            <i class="fa-regular fa-heart"></i>
+          </button>
+        </div>
+
+        <div class="product-info">
+          <h3>Aliança Riviera</h3>
+          <p>Ouro amarelo com acabamento premium</p>
+
+          <div class="product-bottom">
+            <span class="price">R$ 5.490</span>
+
+            <button class="add-cart">
+              Adicionar
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-image">
+          <img src="assets/images/G2.jpg" alt="">
+          <button class="favorite-btn">
+            <i class="fa-regular fa-heart"></i>
+          </button>
+        </div>
+
+        <div class="product-info">
+          <h3>Anel Elegância</h3>
+          <p>Ouro branco com pedras naturais</p>
+
+          <div class="product-bottom">
+            <span class="price">R$ 7.290</span>
 
             <button class="add-cart">
               Adicionar
@@ -265,6 +320,7 @@
   <script src="js/script.js"></script>
   <script src="js/cart.js"></script>
   <script src="js/favorites.js"></script>
+  <script src="js/user-menu.js"></script>
 
 </body>
 

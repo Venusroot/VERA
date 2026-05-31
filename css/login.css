@@ -374,6 +374,58 @@ body {
 
 /* RESPONSIVO */
 
+/* Desktop Extra Grande (1440px+) */
+@media(min-width:1440px) {
+    .auth-page {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .auth-visual {
+        padding: 100px;
+    }
+
+    .visual-content h1 {
+        font-size: 72px;
+    }
+
+    .auth-form-side {
+        padding: 80px 60px;
+    }
+
+    .auth-container {
+        max-width: 480px;
+    }
+
+    .auth-container h2 {
+        font-size: 56px;
+    }
+}
+
+/* Tablet Grande (992px - 1199px) */
+@media(min-width:992px) and (max-width:1199px) {
+
+    .auth-visual {
+        padding: 60px;
+    }
+
+    .visual-content h1 {
+        font-size: 48px;
+    }
+
+    .auth-form-side {
+        padding: 50px;
+    }
+
+    .auth-container {
+        max-width: 380px;
+    }
+
+    .auth-container h2 {
+        font-size: 40px;
+    }
+}
+
+/* Tablet Pequeno / Desktop Pequeno (768px - 991px) */
 @media(max-width:992px) {
 
     .visual-logo {
@@ -387,6 +439,7 @@ body {
 
     .auth-page {
         grid-template-columns: 1fr;
+        min-height: 100vh;
     }
 
     .auth-visual {
@@ -394,21 +447,43 @@ body {
     }
 
     .auth-form-side {
-        padding: 30px;
+        padding: 50px 40px;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .auth-container {
+        max-width: 420px;
     }
 
     .auth-container h2 {
         font-size: 42px;
+        margin-top: 20px;
     }
 
-}
+    .form-description {
+        margin: 12px 0 30px;
+    }
 
-/* Mobile Médio (480px - 768px) */
-@media(max-width:768px) {
+    .input-group {
+        margin-bottom: 18px;
+    }
 
     .back-button {
         top: 25px;
         left: 25px;
+        padding: 10px 14px;
+    }
+}
+
+/* Tablet Médio (768px) */
+@media(max-width:768px) {
+
+    .back-button {
+        top: 22px;
+        left: 22px;
         padding: 9px 12px;
         font-size: 12px;
     }
@@ -417,15 +492,136 @@ body {
         display: inline;
     }
 
+    .form-logo {
+        width: 90px;
+        margin-bottom: 35px;
+    }
+
+    .auth-container {
+        max-width: 100%;
+    }
+
+    .auth-container h2 {
+        font-size: 36px;
+    }
+
+    .form-description {
+        font-size: 15px;
+    }
+
+    .input-group input {
+        height: 52px;
+        padding: 0 16px;
+    }
+
+    .login-btn {
+        height: 52px;
+        font-size: 15px;
+    }
+
+    .social-login {
+        gap: 12px;
+    }
+
+    .social-login button {
+        height: 52px;
+        font-size: 13px;
+    }
 }
 
-/* Mobile Pequeno (<480px) */
-@media(max-width:480px) {
+/* Mobile Grande (480px - 767px) */
+@media(max-width:767px) {
 
     .back-button {
         top: 20px;
         left: 20px;
         padding: 8px 10px;
+    }
+
+    .auth-form-side {
+        padding: 30px 20px;
+    }
+
+    .auth-container {
+        max-width: 100%;
+    }
+
+    .auth-container h2 {
+        font-size: 32px;
+        margin-top: 15px;
+    }
+
+    .form-mini-title {
+        font-size: 11px;
+        margin-bottom: 10px;
+    }
+
+    .form-description {
+        font-size: 14px;
+        margin: 10px 0 25px;
+    }
+
+    .input-group {
+        margin-bottom: 16px;
+    }
+
+    .input-group input {
+        height: 50px;
+        font-size: 16px;
+        padding: 0 14px;
+    }
+
+    .input-group label {
+        font-size: 12px;
+    }
+
+    .password-group {
+        margin-bottom: 12px;
+    }
+
+    .toggle-password {
+        font-size: 16px;
+    }
+
+    .form-options {
+        margin-bottom: 20px;
+    }
+
+    .login-btn {
+        height: 50px;
+        font-size: 14px;
+    }
+
+    .divider {
+        margin: 30px 0;
+    }
+
+    .social-login {
+        gap: 10px;
+    }
+
+    .social-login button {
+        height: 48px;
+        font-size: 12px;
+    }
+
+    .signup-text {
+        margin-top: 30px;
+        font-size: 14px;
+    }
+}
+
+/* Mobile Pequeno (<480px) */
+@media(max-width:480px) {
+
+    .loader img {
+        width: 100px;
+    }
+
+    .back-button {
+        top: 18px;
+        left: 18px;
+        padding: 8px 8px;
         font-size: 0;
         gap: 0;
     }
@@ -440,6 +636,7 @@ body {
 
     .auth-page {
         padding: 0;
+        grid-template-columns: 1fr;
     }
 
     .auth-form-side {
@@ -448,38 +645,112 @@ body {
         display: flex;
         align-items: center;
         justify-content: center;
+        background: #111;
     }
 
     .auth-container {
         max-width: 100%;
+        width: 100%;
     }
 
-    .auth-container h2 {
-        font-size: 32px;
-    }
-
-    .input-group input {
-        height: 54px;
-        font-size: 16px;
-        padding: 0 16px;
-    }
-
-    .login-btn {
-        height: 54px;
-        font-size: 14px;
+    .form-logo {
+        width: 80px;
+        margin-bottom: 30px;
     }
 
     .form-mini-title {
         font-size: 10px;
+        letter-spacing: 2px;
+        margin-bottom: 8px;
+    }
+
+    .auth-container h2 {
+        font-size: 28px;
+        margin-top: 12px;
+        margin-bottom: 12px;
+        line-height: 1.2;
     }
 
     .form-description {
+        font-size: 13px;
+        line-height: 1.6;
+        margin: 8px 0 20px;
+        color: #aaa;
+    }
+
+    .input-group {
+        margin-bottom: 14px;
+    }
+
+    .input-group input {
+        height: 48px;
+        font-size: 16px;
+        padding: 0 14px;
+        border-radius: 8px;
+    }
+
+    .input-group label {
+        font-size: 11px;
+        letter-spacing: 1px;
+    }
+
+    .toggle-password {
         font-size: 14px;
+        right: 14px;
+    }
+
+    .form-options {
+        margin-bottom: 18px;
+        gap: 8px;
+    }
+
+    .remember {
+        font-size: 12px;
+    }
+
+    .form-options a {
+        font-size: 12px;
+    }
+
+    .login-btn {
+        height: 48px;
+        font-size: 13px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+    }
+
+    .divider {
+        margin: 20px 0;
+    }
+
+    .divider span {
+        font-size: 12px;
+        padding: 0 15px;
+    }
+
+    .social-login {
+        gap: 8px;
+        margin-bottom: 20px;
     }
 
     .social-login button {
-        height: 50px;
+        height: 44px;
+        font-size: 11px;
+        border-radius: 8px;
+    }
+
+    .social-login i {
+        font-size: 14px;
+        margin-bottom: 2px;
+    }
+
+    .signup-text {
+        margin-top: 20px;
         font-size: 13px;
+    }
+
+    .signup-text a {
+        font-weight: 500;
     }
 
 }
