@@ -1,17 +1,208 @@
-<section class="checkout-page">
+<!DOCTYPE html>
+<html lang="pt-BR">
 
-  <h1>Checkout Premium</h1>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout - VERA</title>
 
-  <form class="checkout-form">
+  <link rel="icon" type="image/png" href="assets/images/faricon.png" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
 
-    <input type="text" placeholder="Nome Completo">
-    <input type="text" placeholder="CPF">
-    <input type="text" placeholder="Cartão">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
-    <button class="btn-primary">
-      Confirmar Pedido
-    </button>
+  <style>
+    .checkout-page {
+      min-height: 100vh;
+      padding: 140px 8% 60px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
 
-  </form>
+    .checkout-page h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      margin-bottom: 50px;
+    }
 
-</section>
+    .checkout-form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-width: 500px;
+      background: #f6f6f6;
+      padding: 40px;
+      border-radius: 20px;
+    }
+
+    .checkout-form input {
+      padding: 16px;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      outline: none;
+      transition: .3s ease;
+    }
+
+    .checkout-form input:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(200, 169, 107, 0.1);
+    }
+
+    .checkout-form .btn-primary {
+      margin-top: 10px;
+    }
+
+    @media(max-width:768px) {
+      .checkout-page {
+        padding: 120px 20px 40px;
+      }
+
+      .checkout-page h1 {
+        font-size: 2rem;
+      }
+
+      .checkout-form {
+        padding: 25px;
+        max-width: 100%;
+      }
+    }
+
+    @media(max-width:480px) {
+      .checkout-page {
+        padding: 110px 16px 30px;
+      }
+
+      .checkout-page h1 {
+        font-size: 1.6rem;
+      }
+
+      .checkout-form {
+        padding: 20px;
+      }
+
+      .checkout-form input {
+        padding: 14px;
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="loader">
+    <div class="loader-logo">
+      <img src="assets/images/logo.png" alt="VERA Logo">
+    </div>
+  </div>
+
+  <header class="header">
+    <div class="top-header">
+      <a href="index.html" class="logo">
+        <img src="assets/images/logo.png" alt="VERA">
+      </a>
+
+      <nav class="navbar">
+        <a href="#">Novidades</a>
+        <a href="#">Alianças</a>
+        <a href="#">Noivado</a>
+        <a href="#">Casamento</a>
+        <a href="#">Coleções</a>
+      </nav>
+
+      <div class="header-actions">
+        <div class="search-box">
+          <input type="text" placeholder="Buscar produtos...">
+          <i class="fa-solid fa-search"></i>
+        </div>
+
+        <a href="favorites.html" class="icon-link">
+          <i class="fa-regular fa-heart"></i>
+        </a>
+
+        <a href="cart.html" class="cart-icon icon-link">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span class="cart-count">0</span>
+        </a>
+
+        <a href="login.html" class="icon-link">
+          <i class="fa-regular fa-user"></i>
+        </a>
+
+        <div class="menu-toggle" id="mobile-menu-btn">
+          <i class="fa-solid fa-bars"></i>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="checkout-page">
+
+    <h1>Checkout Premium</h1>
+
+    <form class="checkout-form">
+
+      <input type="text" placeholder="Nome Completo" required>
+      <input type="text" placeholder="CPF" required>
+      <input type="text" placeholder="Cartão" required>
+
+      <button type="submit" class="btn-primary">
+        Confirmar Pedido
+      </button>
+
+    </form>
+
+  </section>
+
+  <footer class="footer">
+
+    <div class="footer-grid">
+
+      <div>
+        <h3>VERA</h3>
+        <p>
+          Marketplace premium inspirado na sofisticação das maiores marcas de luxo internacionais.
+        </p>
+      </div>
+
+      <div>
+        <h4>Navegação</h4>
+        <a href="#">Produtos</a>
+        <a href="#">Categorias</a>
+        <a href="#">Promoções</a>
+      </div>
+
+      <div>
+        <h4>Suporte</h4>
+        <a href="#">Contato</a>
+        <a href="#">FAQ</a>
+        <a href="#">Privacidade</a>
+      </div>
+
+      <div>
+        <h4>Redes Sociais</h4>
+
+        <div class="socials">
+          <i class="fa-brands fa-instagram"></i>
+          <i class="fa-brands fa-pinterest"></i>
+          <i class="fa-brands fa-facebook-f"></i>
+        </div>
+      </div>
+
+    </div>
+
+  </footer>
+
+  <script src="js/script.js"></script>
+
+</body>
+
+</html>
