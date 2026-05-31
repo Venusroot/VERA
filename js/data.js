@@ -13,7 +13,7 @@ const PRODUCTS_DATABASE = [
     description: 'Uma peça criada para eternizar momentos únicos com acabamento refinado em ouro 18k.',
     category: 'noivado',
     metal: 'ouro-amarelo',
-    images: ['assets/images/anel_01.jpg', 'assets/images/anel_02.jpg', 'assets/images/anel_03.jpg'],
+    images: ['assets/images/C1.jpg', 'assets/images/C2.jpg', 'assets/images/C3.jpg'],
     rating: 4.8,
     reviews: 24
   },
