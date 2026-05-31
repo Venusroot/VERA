@@ -34,7 +34,7 @@ togglePassword.addEventListener('click', () => {
 
 });
 
-// BOTÃO LOADING
+// BOTÃO LOADING E LOGIN
 
 const form =
 document.querySelector('.auth-form');
@@ -42,19 +42,41 @@ document.querySelector('.auth-form');
 const button =
 document.querySelector('.login-btn');
 
+const emailInput = document.querySelector('#email');
+const passwordInput = document.querySelector('#password');
+
 form.addEventListener('submit', (e) => {
 
     e.preventDefault();
 
+    const email = emailInput.value.trim();
+    const password = passwordInput.value;
+
+    // Inicia loading
     button.innerHTML = 'Entrando...';
-
     button.style.opacity = '.7';
+    button.disabled = true;
 
+    // Tenta fazer login
     setTimeout(() => {
+        const loginSuccess = login(email, password);
 
-        button.innerHTML = 'Entrar';
-        button.style.opacity = '1';
-
-    }, 2500);
+        if (loginSuccess) {
+            // Login bem-sucedido
+            showToast('Login realizado com sucesso! 🎉');
+            
+            // Aguarda um pouco para o usuário ver a mensagem
+            setTimeout(() => {
+                // Redireciona para index
+                window.location.href = 'index.html';
+            }, 1500);
+        } else {
+            // Login falhou
+            button.innerHTML = 'Entrar';
+            button.style.opacity = '1';
+            button.disabled = false;
+            showToast('Email ou senha incorretos');
+        }
+    }, 1500);
 
 });
