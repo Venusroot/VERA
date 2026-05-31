@@ -23,7 +23,10 @@
 
   <!-- Botão de voltar-->
   <section class="auth-page">
-    <a href="index.html" class="back-button"> ← Voltar </a>
+    <a href="index.html" class="back-button"> 
+      <i class="fa-solid fa-arrow-left"></i>
+      <span class="back-text">Voltar</span>
+    </a>
 
     <!-- LADO VISUAL -->
     <div class="auth-visual">
@@ -61,7 +64,7 @@
         <form class="auth-form">
           <!-- EMAIL -->
           <div class="input-group">
-            <input type="email" required />
+            <input type="email" id="email" required />
             <label>E-mail</label>
           </div>
 
@@ -118,6 +121,7 @@
   </section>
 
   <script src="js/login.js"></script>
+  <script src="js/auth.js"></script>
 </body>
 
 </html>

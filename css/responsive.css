@@ -542,3 +542,40 @@
   }
 
 }
+
+/* Extra pequeno (<360px) */
+@media(max-width:360px) {
+
+  .top-header{
+    padding:12px 10px;
+    gap:8px;
+  }
+
+  .logo img{
+    width:45px;
+  }
+
+  .header-actions{
+    gap:8px;
+  }
+
+  .header-actions i{
+    font-size:13px;
+  }
+
+  .cart-count{
+    width:15px;
+    height:15px;
+    font-size:8px;
+  }
+
+  .navbar{
+    width:80vw;
+    padding:80px 20px;
+  }
+
+  .navbar a{
+    font-size:0.85rem;
+  }
+
+}

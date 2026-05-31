@@ -98,6 +98,15 @@ body {
     backdrop-filter: blur(10px);
 
     transition: 0.4s ease;
+    
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.back-button:hover {
+    color: rgba(255, 255, 255, 0.9);
+    background: rgba(0, 0, 0, 0.3);
 }
 
 /* VISUAL */
@@ -390,6 +399,87 @@ body {
 
     .auth-container h2 {
         font-size: 42px;
+    }
+
+}
+
+/* Mobile Médio (480px - 768px) */
+@media(max-width:768px) {
+
+    .back-button {
+        top: 25px;
+        left: 25px;
+        padding: 9px 12px;
+        font-size: 12px;
+    }
+
+    .back-text {
+        display: inline;
+    }
+
+}
+
+/* Mobile Pequeno (<480px) */
+@media(max-width:480px) {
+
+    .back-button {
+        top: 20px;
+        left: 20px;
+        padding: 8px 10px;
+        font-size: 0;
+        gap: 0;
+    }
+
+    .back-button i {
+        font-size: 16px;
+    }
+
+    .back-text {
+        display: none;
+    }
+
+    .auth-page {
+        padding: 0;
+    }
+
+    .auth-form-side {
+        padding: 20px;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .auth-container {
+        max-width: 100%;
+    }
+
+    .auth-container h2 {
+        font-size: 32px;
+    }
+
+    .input-group input {
+        height: 54px;
+        font-size: 16px;
+        padding: 0 16px;
+    }
+
+    .login-btn {
+        height: 54px;
+        font-size: 14px;
+    }
+
+    .form-mini-title {
+        font-size: 10px;
+    }
+
+    .form-description {
+        font-size: 14px;
+    }
+
+    .social-login button {
+        height: 50px;
+        font-size: 13px;
     }
 
 }
