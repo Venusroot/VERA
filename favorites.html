@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Favoritos - VERA</title>
+
+  <link rel="icon" type="image/png" href="assets/images/faricon.png" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="stylesheet" href="css/produtos.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <style>
+    /* PÁGINA DE FAVORITOS */
+    .favorites-container {
+      max-width: 1400px;
+      margin: 140px auto 40px;
+      padding: 0 40px;
+    }
+
+    .favorites-header {
+      margin-bottom: 60px;
+      text-align: center;
+    }
+
+    .favorites-header h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      margin-bottom: 12px;
+    }
+
+    .favorites-header p {
+      color: var(--text);
+      font-size: 1rem;
+    }
+
+    .favorites-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 30px;
+      margin-bottom: 60px;
+    }
+
+    .favorite-card {
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: 0.5s;
+    }
+
+    .favorite-card:hover {
+      transform: translateY(-10px);
+    }
+
+    .favorite-image {
+      position: relative;
+      width: 100%;
+      height: 340px;
+      overflow: hidden;
+      background: #f9f9f9;
+    }
+
+    .favorite-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 1s ease;
+    }
+
+    .favorite-card:hover .favorite-image img {
+      transform: scale(1.08);
+    }
+
+    .favorite-remove {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 45px;
+      height: 45px;
+      border: none;
+      border-radius: 50%;
+      background: white;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      color: var(--gold);
+      transition: 0.3s ease;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    }
+
+    .favorite-remove:hover {
+      background: var(--gold);
+      color: white;
+      transform: scale(1.1);
+    }
+
+    .favorite-info {
+      padding: 30px;
+    }
+
+    .favorite-category {
+      font-size: 0.75rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+
+    .favorite-info h3 {
+      font-size: 1.4rem;
+      margin-bottom: 8px;
+    }
+
+    .favorite-info p {
+      color: var(--text);
+      margin-bottom: 20px;
+      font-size: 0.95rem;
+    }
+
+    .favorite-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .favorite-price {
+      color: var(--gold);
+      font-size: 1.3rem;
+      font-weight: 600;
+    }
+
+    .add-to-cart-btn {
+      border: none;
+      background: black;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 40px;
+      cursor: pointer;
+      transition: 0.3s ease;
+      font-size: 0.9rem;
+    }
+
+    .add-to-cart-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .empty-favorites {
+      text-align: center;
+      padding: 80px 40px;
+    }
+
+    .empty-favorites i {
+      font-size: 4rem;
+      color: var(--gold);
+      margin-bottom: 20px;
+      opacity: 0.6;
+    }
+
+    .empty-favorites h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      margin-bottom: 12px;
+    }
+
+    .empty-favorites p {
+      color: var(--text);
+      margin-bottom: 40px;
+      font-size: 1rem;
+    }
+
+    .continue-shopping {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px 34px;
+      border-radius: 50px;
+      background: white;
+      color: black;
+      border: 2px solid var(--gold);
+      cursor: pointer;
+      transition: 0.4s;
+      font-weight: 500;
+      text-decoration: none;
+    }
+
+    .continue-shopping:hover {
+      background: var(--gold);
+      color: white;
+      transform: translateY(-4px);
+    }
+
+    /* RESPONSIVO */
+    @media(max-width:992px) {
+      .favorites-container {
+        padding: 0 20px;
+        margin-top: 110px;
+      }
+
+      .favorites-header h1 {
+        font-size: 2.5rem;
+      }
+
+      .favorites-grid {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 25px;
+      }
+    }
+
+    @media(max-width:768px) {
+      .favorites-container {
+        padding: 0 18px;
+        margin-top: 100px;
+      }
+
+      .favorites-header h1 {
+        font-size: 2rem;
+      }
+
+      .favorites-grid {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 18px;
+      }
+
+      .favorite-info {
+        padding: 20px;
+      }
+
+      .favorite-info h3 {
+        font-size: 1.1rem;
+      }
+
+      .favorite-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+    }
+
+    @media(max-width:576px) {
+      .favorites-container {
+        padding: 0 14px;
+        margin-top: 90px;
+      }
+
+      .favorites-header h1 {
+        font-size: 1.6rem;
+      }
+
+      .favorites-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .favorite-image {
+        height: 300px;
+      }
+
+      .add-to-cart-btn {
+        width: 100%;
+      }
+    }
+
+    @media(max-width:480px) {
+      .favorites-container {
+        padding: 0 12px;
+        margin-top: 85px;
+      }
+
+      .favorites-header h1 {
+        font-size: 1.4rem;
+      }
+
+      .favorites-header p {
+        font-size: 0.9rem;
+      }
+
+      .favorites-grid {
+        gap: 14px;
+      }
+
+      .favorite-image {
+        height: 260px;
+      }
+
+      .favorite-info {
+        padding: 16px;
+      }
+
+      .favorite-info h3 {
+        font-size: 1rem;
+      }
+
+      .favorite-price {
+        font-size: 1.2rem;
+      }
+
+      .add-to-cart-btn {
+        padding: 10px 16px;
+        font-size: 0.85rem;
+      }
+
+      .empty-favorites {
+        padding: 60px 20px;
+      }
+
+      .empty-favorites i {
+        font-size: 3rem;
+      }
+
+      .empty-favorites h2 {
+        font-size: 1.8rem;
+      }
+
+      .continue-shopping {
+        padding: 12px 24px;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- LOADER -->
+  <div class="loader">
+    <div class="loader-logo">
+      <img src="assets/images/logo.png" alt="VERA Logo">
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="top-header">
+      <a href="index.html" class="logo">
+        <img src="assets/images/logo.png" alt="VERA">
+      </a>
+
+      <nav class="navbar">
+        <a href="#">Novidades</a>
+        <a href="#">Alianças</a>
+        <a href="#">Noivado</a>
+        <a href="#">Casamento</a>
+        <a href="#">Coleções</a>
+      </nav>
+
+      <div class="header-actions">
+        <div class="search-box">
+          <input type="text" placeholder="Buscar produtos...">
+          <i class="fa-solid fa-search"></i>
+        </div>
+
+        <a href="favorites.html" class="icon-link" aria-label="Favoritos">
+          <i class="fa-regular fa-heart"></i>
+        </a>
+
+        <a href="cart.html" class="cart-icon icon-link" aria-label="Sacola">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span class="cart-count">0</span>
+        </a>
+
+        <a href="login.html" class="icon-link" aria-label="Minha conta">
+          <i class="fa-regular fa-user"></i>
+        </a>
+
+        <button class="menu-toggle" id="mobile-menu-btn" type="button" aria-label="Abrir menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- CONTEÚDO PRINCIPAL -->
+  <main class="favorites-container" id="favorites-content">
+    <!-- Será preenchido por JavaScript -->
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div>
+        <h3>VERA</h3>
+        <p>
+          Marketplace premium inspirado na sofisticação das maiores marcas de luxo internacionais.
+        </p>
+      </div>
+
+      <div>
+        <h4>Navegação</h4>
+        <a href="#">Produtos</a>
+        <a href="#">Categorias</a>
+        <a href="#">Promoções</a>
+      </div>
+
+      <div>
+        <h4>Suporte</h4>
+        <a href="#">Contato</a>
+        <a href="#">FAQ</a>
+        <a href="#">Privacidade</a>
+      </div>
+
+      <div>
+        <h4>Redes Sociais</h4>
+        <div class="socials">
+          <i class="fa-brands fa-instagram"></i>
+          <i class="fa-brands fa-pinterest"></i>
+          <i class="fa-brands fa-facebook-f"></i>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPTS -->
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+      const container =
+        document.getElementById('favorites-content');
+
+      const favorites =
+        JSON.parse(localStorage.getItem('favorites')) || [];
+
+      if (favorites.length === 0) {
+
+        container.innerHTML = `
+      <div class="empty-favorites">
+        <i class="fa-solid fa-heart-crack"></i>
+
+        <h2>Nenhum favorito encontrado</h2>
+
+        <p>
+          Você ainda não adicionou nenhum produto aos seus favoritos.
+        </p>
+
+        <a href="produtos.html"
+           class="continue-shopping">
+          Continuar Comprando
+        </a>
+      </div>
+    `;
+
+        return;
+      }
+
+      container.innerHTML = `
+    <div class="favorites-header">
+      <h1>Meus Favoritos</h1>
+      <p>${favorites.length} produto(s) favoritado(s)</p>
+    </div>
+
+    <div class="favorites-grid"></div>
+  `;
+
+      const grid =
+        container.querySelector('.favorites-grid');
+
+      favorites.forEach(product => {
+
+        grid.innerHTML += `
+      <div class="favorite-card">
+
+        <div class="favorite-image">
+
+          <img
+            src="${product.image}"
+            alt="${product.name}"
+          >
+
+          <button
+            class="favorite-remove"
+            data-name="${product.name}"
+          >
+            <i class="fa-solid fa-heart"></i>
+          </button>
+
+        </div>
+
+        <div class="favorite-info">
+
+          <span class="favorite-category">
+            FAVORITO
+          </span>
+
+          <h3>${product.name}</h3>
+
+          <div class="favorite-bottom">
+
+            <span class="favorite-price">
+              ${product.price}
+            </span>
+
+            <button class="add-to-cart-btn">
+              Adicionar à Sacola
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+    `;
+      });
+
+      document
+        .querySelectorAll('.favorite-remove')
+        .forEach(button => {
+
+          button.addEventListener('click', () => {
+
+            const productName =
+              button.dataset.name;
+
+            const updatedFavorites =
+              favorites.filter(
+                item => item.name !== productName
+              );
+
+            localStorage.setItem(
+              'favorites',
+              JSON.stringify(updatedFavorites)
+            );
+
+            location.reload();
+
+          });
+
+        });
+
+    });
+  </script>
+  <script src="js/data.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/route-guard.js"></script>
+  <script src="js/cart-manager.js"></script>
+  <script src="js/script.js"></script>
+
+</body>
+
+</html>

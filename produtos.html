@@ -678,10 +678,106 @@
   </div>
 
   <script src="js/script.js"></script>
-  <script src="js/cart.js"></script>
-  <script src="js/favorites.js"></script>
   <script src="js/auth.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/data.js"></script>
   <script src="js/route-guard.js"></script>
+  <script src="js/cart-manager.js"></script>
+
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+      const favorites =
+        JSON.parse(localStorage.getItem('favorites')) || [];
+
+      // Marca os favoritos já salvos
+      document.querySelectorAll('.product-card').forEach(card => {
+
+        const productName =
+          card.querySelector('h3').textContent;
+
+        const button =
+          card.querySelector('.favorite-btn');
+
+        const icon =
+          button.querySelector('i');
+
+        const isFavorite = favorites.some(
+          item => item.name === productName
+        );
+
+        if (isFavorite) {
+          button.classList.add('active');
+          icon.classList.remove('fa-regular');
+          icon.classList.add('fa-solid');
+        }
+
+      });
+
+      document.querySelectorAll('.favorite-btn').forEach(button => {
+
+        button.addEventListener('click', (e) => {
+
+          e.preventDefault();
+
+          const user = JSON.parse(
+            localStorage.getItem('currentUser')
+          );
+
+          if (!user) {
+            alert('Faça login para favoritar');
+            return;
+          }
+
+          const card = button.closest('.product-card');
+
+          const product = {
+            name: card.querySelector('h3').textContent,
+            price: card.querySelector('.price').textContent,
+            image: card.querySelector('.img-gallery img').src
+          };
+
+          let favorites =
+            JSON.parse(localStorage.getItem('favorites')) || [];
+
+          const exists = favorites.find(
+            item => item.name === product.name
+          );
+
+          if (!exists) {
+
+            favorites.push(product);
+
+            button.classList.add('active');
+            button.querySelector('i').classList.remove('fa-regular');
+            button.querySelector('i').classList.add('fa-solid');
+
+          } else {
+
+            favorites = favorites.filter(
+              item => item.name !== product.name
+            );
+
+            button.classList.remove('active');
+            button.querySelector('i').classList.remove('fa-solid');
+            button.querySelector('i').classList.add('fa-regular');
+
+          }
+
+          localStorage.setItem(
+            'favorites',
+            JSON.stringify(favorites)
+          );
+
+          console.log(favorites);
+
+        });
+
+      });
+
+    });
+  </script>
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -750,6 +846,11 @@
 
         if (noResults) {
           noResults.hidden = visibleCount > 0;
+        }
+
+        // Re-inicializa botões de favorito
+        if (typeof reinitializeFavoriteButtons === 'function') {
+          reinitializeFavoriteButtons();
         }
       }
 

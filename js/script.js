@@ -72,27 +72,27 @@ function showToast(message){
 
 }
 
-const slides =
-document.querySelectorAll('.hero-slide');
+const slides = document.querySelectorAll('.hero-slide');
 
 let currentSlide = 0;
 
-function changeSlide(){
+function changeSlide() {
 
-    slides[currentSlide]
-    .classList.remove('active');
+  if (slides.length === 0) return;
 
-    currentSlide++;
+  slides[currentSlide].classList.remove('active');
 
-    if(currentSlide >= slides.length){
+  currentSlide++;
 
-        currentSlide = 0;
+  if (currentSlide >= slides.length) {
+    currentSlide = 0;
+  }
 
-    }
+  slides[currentSlide].classList.add('active');
+}
 
-    slides[currentSlide]
-    .classList.add('active');
-
+if (slides.length > 0) {
+  setInterval(changeSlide, 8000);
 }
 
 setInterval(changeSlide, 8000);
