@@ -162,8 +162,6 @@ Seu propósito é consolidar conhecimentos técnicos adquiridos ao longo da grad
 
 ### Desenvolvedor
 
-**Augusto Mota**
-
 * Desenvolvimento Front-end
 * Estruturação da aplicação
 * Controle de versão
