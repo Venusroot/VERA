@@ -16,6 +16,7 @@ $senha = "usbw";
 $banco = "bancov"; 
 
 $conexao = new mysqli($servidor, $usuario, $senha, $banco);
+$conexao->set_charset("utf8mb4");
 
 // Verificar se houve erro na conexão
 if ($conexao->connect_error) {
@@ -41,6 +42,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $cidade = $_POST['cidade'] ?? '';
     $uf = $_POST['uf'] ?? '';
 
+    $estrangeiro = isset($_POST['estrangeiro']) ? 'Sim' : 'Não';
+    $nacionalidade = $_POST['nacionalidade'] ?? '';
+    $documento = $_POST['documento'] ?? '';
+
     // Validação se as senhas coincidem
     if ($senha_usuario !== $confirmar_senha) {
         echo "<script>alert('As senhas não coincidem!'); window.history.back();</script>";
@@ -50,15 +55,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Criptografar a senha por segurança
     $senha_criptografada = password_hash($senha_usuario, PASSWORD_DEFAULT);
 
-    // SQL exato para a tabela cadusuario (13 colunas correspondentes à sua imagem)
-    $sql = "INSERT INTO cadusuario (nome, login, senha, email, cpf, telefone_pessoal, telefone_comercial, logradouro, numero, cep, bairro, cidade, uf) 
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    // SQL para a tabela cadusuario 
+    $sql = "INSERT INTO cadusuario (nome, login, senha, email, cpf, telefone_pessoal, telefone_comercial, logradouro, numero, cep, bairro, cidade, uf, estrangeiro, nacionalidade, documento) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     
     $stmt = $conexao->prepare($sql);
     
     if ($stmt) {
-        // 13 parâmetros string ('s')
-        $stmt->bind_param("sssssssssssss", 
+        // Exatamente 16 letras 's' para os 16 parâmetros enviados
+        $stmt->bind_param("ssssssssssssssss", 
             $nome, 
             $login, 
             $senha_criptografada, 
@@ -71,7 +76,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $cep, 
             $bairro, 
             $cidade, 
-            $uf
+            $uf,
+            $estrangeiro,
+            $nacionalidade,
+            $documento
         );
 
         if ($stmt->execute()) {
