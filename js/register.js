@@ -3,13 +3,11 @@
 window.addEventListener('load', () => {
 
     const loader = document.querySelector('.loader');
-
-    setTimeout(() => {
-
-        loader.classList.add('hide');
-
-    }, 2500);
-
+    if (loader) {
+        setTimeout(() => {
+            loader.classList.add('hide');
+        }, 2500);
+    }
 });
 
 // ===== MOSTRAR / OCULTAR SENHA =====
@@ -21,12 +19,7 @@ document.querySelectorAll('.toggle-password').forEach((toggle) => {
     if (!input) return;
 
     toggle.addEventListener('click', () => {
-
-        const type =
-            input.getAttribute('type') === 'password'
-                ? 'text'
-                : 'password';
-
+        const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
         input.setAttribute('type', type);
 
         toggle.classList.toggle('fa-eye');
@@ -46,17 +39,7 @@ const masks = {
         return onlyDigits(value)
             .slice(0, 11)
             .replace(/(\d{3})(\d)/, '$1.$2')
-            .replace(/(\d{3})(\d)/, '$1.$2')
-            .replace(/(\d{3})(\d{1,2})$/, '$1-$2');
-    },
-
-    cnpj(value) {
-        return onlyDigits(value)
-            .slice(0, 14)
-            .replace(/^(\d{2})(\d)/, '$1.$2')
-            .replace(/^(\d{2})\.(\d{3})(\d)/, '$1.$2.$3')
-            .replace(/\.(\d{3})(\d)/, '.$1/$2')
-            .replace(/(\d{4})(\d)/, '$1-$2');
+            .replace(/(\d{3})(\d)/, '$1.$2')             .replace(/(\d{3})(\d{1,2})$/, '$1-$2');
     },
 
     cep(value) {
@@ -161,11 +144,13 @@ if (estrangeiro) {
         const ativo = estrangeiro.checked;
 
         camposEstrangeiro.forEach((campo) => {
+            if (!campo) return;
             campo.disabled = !ativo;
             if (!ativo) campo.value = '';
         });
 
         camposLocalizacao.forEach((campo) => {
+            if (!campo) return;
             campo.disabled = ativo;
             if (ativo) campo.value = '';
         });
@@ -174,7 +159,7 @@ if (estrangeiro) {
 
 }
 
-// ===== VALIDAÇÃO + BOTÃO LOADING =====
+// ===== VALIDAÇÃO + ENVIO PARA O PHP =====
 
 const form = document.querySelector('#register-form');
 const button = document.querySelector('.register-btn');
@@ -184,58 +169,49 @@ const senha = document.querySelector('#senha');
 const confirmarSenha = document.querySelector('#confirmar-senha');
 
 function mostrarErro(mensagem) {
-
+    if (!errorBox) return;
     errorBox.textContent = mensagem;
     errorBox.classList.toggle('show', Boolean(mensagem));
 
 }
 
 function senhasConferem() {
-
-    if (!confirmarSenha.value) return true;
-
+    if (!confirmarSenha || !confirmarSenha.value) return true;
     return senha.value === confirmarSenha.value;
-
+    
 }
 
-confirmarSenha.addEventListener('input', () => {
+if (confirmarSenha) {
+    confirmarSenha.addEventListener('input', () => {
+        mostrarErro(senhasConferem() ? '' : 'As senhas não coincidem.');
+    });
+}
 
-    mostrarErro(senhasConferem() ? '' : 'As senhas não coincidem.');
+if (form) {
+    form.addEventListener('submit', (e) => {
+        // Validação 1: As senhas coincidem?
+        if (!senhasConferem()) {
+            e.preventDefault(); // Bloqueia apenas se houver erro
+            mostrarErro('As senhas não coincidem.');
+            confirmarSenha.focus();
+            return;
+        }
 
-});
+        // Validação 2: A senha tem pelo menos 6 caracteres?
+        if (senha && senha.value.length < 6) {
+            e.preventDefault(); // Bloqueia apenas se houver erro
+            mostrarErro('A senha deve ter no mínimo 6 caracteres.');
+            senha.focus();
+            return;
+        }
 
-form.addEventListener('submit', (e) => {
+        // Se passou em tudo, limpa os erros e deixa o formulário enviar para o PHP livremente!
+        mostrarErro('');
 
-    e.preventDefault();
-
-    if (!senhasConferem()) {
-
-        mostrarErro('As senhas não coincidem.');
-        confirmarSenha.focus();
-        return;
-
-    }
-
-    if (senha.value.length < 6) {
-
-        mostrarErro('A senha deve ter no mínimo 6 caracteres.');
-        senha.focus();
-        return;
-
-    }
-
-    mostrarErro('');
-
-    button.disabled = true;
-    button.innerHTML = 'Criando conta...';
-    button.style.opacity = '.7';
-
-    setTimeout(() => {
-
-        button.innerHTML = '<span>Criar conta</span>';
-        button.disabled = false;
-        button.style.opacity = '1';
-
-    }, 2500);
-
-});
+        if (button) {
+            button.disabled = true;
+            button.innerHTML = 'Criando conta...';
+            button.style.opacity = '.7';
+        }
+    });
+}
