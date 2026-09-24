@@ -18,7 +18,7 @@
   <!-- Carregamento da tela -->
   <div class="loader">
     <img src="assets/images/logo.png" alt="VERA" />
-  </div>
+  </div> 
 
   <!-- CADASTRO -->
   <section class="auth-page">
@@ -34,7 +34,7 @@
         <span class="mini-text"> EXPERIÊNCIA PREMIUM </span>
 
         <h1>
-          torne sua experiência B2C em algo <em>valioso</em>
+          Torne sua experiência B2C em algo <em>valioso</em>
         </h1>
 
         <p class="visual-footer">
@@ -50,11 +50,11 @@
 
         <h2>Crie sua conta</h2>
 
-        <form class="auth-form" id="register-form" novalidate>
+        <form class="auth-form" id="register-form" action="cadastrar_usuario.php" method="POST" novalidate>
 
           <!-- DADOS PESSOAIS E DE NEGÓCIO -->
           <fieldset class="form-section">
-            <legend class="section-title">Dados pessoais e de negócio</legend>
+            <legend class="section-title">Dados pessoais</legend>
 
             <div class="form-grid">
               <div class="input-group span-4">
@@ -70,24 +70,25 @@
                 <input type="email" id="email" name="email" placeholder="E-mail" required />
               </div>
 
-              <div class="input-group span-2">
+            <!-- CNPJ é pra fornecedor e essa tela é usuarios   <div class="input-group span-2">
                 <input type="text" id="cnpj" name="cnpj" placeholder="CNPJ" inputmode="numeric"
                   data-mask="cnpj" maxlength="18" />
-              </div>
+              </div> -->
 
               <div class="input-group span-2">
                 <input type="tel" id="telefone-pessoal" name="telefone_pessoal" placeholder="Telefone pessoal"
                   data-mask="phone" maxlength="15" />
               </div>
 
-              <div class="input-group span-2">
+              <div class="input-group span-4">
+                <input type="text" id="login" name="login" placeholder="Login" />
+              </div>
+              
+             <div class="input-group span-2">
                 <input type="tel" id="telefone-comercial" name="telefone_comercial" placeholder="Telefone comercial"
                   data-mask="phone" maxlength="15" />
               </div>
 
-              <div class="input-group span-2">
-                <input type="text" id="marca" name="marca" placeholder="Nome de usuário/marca" />
-              </div>
             </div>
           </fieldset>
 
@@ -177,7 +178,8 @@
     </main>
   </section>
 
-  <script src="js/register.js"></script>
+    <script src="js/register.js"></script>
+    
 </body>
 
 </html>
