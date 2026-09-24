@@ -1,8 +1,8 @@
 <?php
 $host = 'db'; // Nome do serviço no docker-compose
 $db   = 'vera';
-$user = 'admin';
-$pass = 'admin';
+$user = 'adm';
+$pass = 'adm';
 $charset = 'utf8mb4';
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";

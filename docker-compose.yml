@@ -1,10 +1,13 @@
-version: '3.8'
-
 services:
   web:
-    image: php:8.2-apache
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: vera-web:latest
     ports:
       - "8000:80"
+    extra_hosts:
+      - "db:host-gateway"
     volumes:
       - .:/var/www/html
     depends_on:
@@ -12,13 +15,14 @@ services:
 
   db:
     image: mysql:8.0
+    command: --bind-address=0.0.0.0
     ports:
       - "3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: admin
       MYSQL_DATABASE: vera
-      MYSQL_USER: admin
-      MYSQL_PASSWORD: admin
+      MYSQL_USER: adm
+      MYSQL_PASSWORD: adm
     volumes:
       - db_data:/var/lib/mysql
       - ./schema.sql:/docker-entrypoint-initdb.d/schema.sql
