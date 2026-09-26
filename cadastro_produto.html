@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Cadastrar Produto | VERA</title>
+  <link rel="icon" type="image/png" href="assets/images/faricon.png" />
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <link rel="stylesheet" href="css/register.css" />
+  
+
+
+</head>
+
+<body>
+  <!-- Carregamento da tela -->
+  <div class="loader">
+    <img src="assets/images/logo.png" alt="VERA" />
+  </div>
+
+  <!-- CADASTRO DE PRODUTO -->
+  <section class="auth-page">
+    <a href="index.html" class="back-button"> ← Voltar </a>
+
+    <!-- LADO VISUAL -->
+    <aside class="auth-visual">
+      <div class="overlay"></div>
+
+      <div class="visual-content">
+        <img src="assets/images/logo.png" class="visual-logo" alt="VERA Logo" />
+
+        <span class="mini-text"> GESTÃO DE PRODUTOS </span>
+
+        <h1>
+          Cadastre suas <em>joias</em> com todos os detalhes
+        </h1>
+
+        <p class="visual-footer">
+          <strong>VERA</strong> é a plataforma ideal para venda de suas jóias
+        </p>
+      </div>
+    </aside>
+
+    <!-- FORMULÁRIO -->
+    <main class="auth-form-side">
+      <div class="auth-container">
+        <img src="assets/images/logo.png" class="form-logo mobile-logo" alt="Logo" />
+
+        <h2>Cadastrar produto</h2>
+
+        <form class="auth-form" id="produto-form" action="cadastrar_produto.php" method="POST" novalidate>
+
+          <!-- DADOS DO PRODUTO -->
+          <fieldset class="form-section">
+            <legend class="section-title">Dados do produto</legend>
+
+            <div class="form-grid">
+              <div class="input-group span-4">
+                <input type="text" id="nome" name="nome" placeholder="Nome do produto" required />
+              </div>
+
+              <div class="input-group span-3">
+                <input type="text" id="tamanho" name="tamanho" placeholder="Tamanho (ex: 15, P, M, Único)" required />
+              </div>
+
+              <div class="input-group span-2">
+                <input type="text" id="material" name="material" placeholder="Material (ex: Ouro 18k, Prata 925)" required />
+              </div>
+
+              <div class="input-group span-2">
+                <input type="number" step="0.01" min="0" id="peso" name="peso" placeholder="Peso (g)" required />
+              </div>
+
+              <div class="input-group span-2">
+                <input type="text" id="categoria" name="categoria" placeholder="Categoria (ex: Anel, Colar, Brinco)" required />
+              </div>
+
+              <div class="input-group span-4">
+                <textarea id="descricao" name="descricao" placeholder="Descrição do produto" rows="4"></textarea>
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- PREÇO E ESTOQUE -->
+          <fieldset class="form-section">
+            <legend class="section-title">Preço e estoque inicial</legend>
+
+            <div class="form-grid">
+              <div class="input-group span-4">
+                <input type="number" step="0.01" min="0" id="preco" name="preco" placeholder="Preço (R$)" required />
+              </div>
+
+              <div class="input-group span-4">
+                <input type="number" min="0" id="quantidade_inicial" name="quantidade_inicial"
+                  placeholder="Quantidade inicial em estoque" />
+              </div>
+            </div>
+          </fieldset>
+
+          <div class="submit-row">
+            <button type="submit" class="register-btn">
+              Cadastrar produto
+            </button>
+          </div>
+
+        </form>
+      </div>
+    </main>
+  </section>
+      <script src="js/register.js"></script>
+
+</body>
+
+</html>
