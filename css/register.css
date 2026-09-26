@@ -262,7 +262,7 @@ body {
 }
 
 .span-4 {
-    grid-column: span 4;
+    grid-column: span 3;
 }
 
 /* ===== INPUTS ===== */
@@ -518,4 +518,38 @@ body {
     .register-btn {
         max-width: 100%;
     }
+}
+
+/* Text Area Cad*/
+.input-group textarea {
+    width: 100%;
+    min-height: 110px;
+
+    background: rgba(255, 255, 255, .03);
+    border: 1px solid rgba(255, 255, 255, .08);
+
+    padding: 16px 18px;
+    resize: vertical;
+
+    color: #fff;
+    font-family: var(--fonte-pagina);
+    font-size: 12px;
+    letter-spacing: 1.4px;
+    line-height: 1.6;
+
+    outline: none;
+    transition: .4s ease;
+}
+
+.input-group textarea::placeholder {
+    color: #777;
+    text-transform: uppercase;
+    letter-spacing: 1.6px;
+    font-size: 11px;
+}
+
+.input-group textarea:focus {
+    border-color: var(--cor-dourado);
+    background: rgba(255, 255, 255, .05);
+    box-shadow: 0 0 0 1px rgba(212, 175, 55, .12);
 }
