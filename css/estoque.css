@@ -1,0 +1,39 @@
+.estoque-wrap { max-width: 1100px; margin: 120px auto 60px; padding: 0 20px; }
+
+.estoque-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    font-family: 'Inter', sans-serif;
+ }
+
+.estoque-table { 
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+     }
+
+.estoque-table th, .estoque-table td { padding: 12px 14px; border-bottom: 1px solid #eee; text-align: left; font-size: 14px; }
+
+.estoque-table th { background: #faf8f5; text-transform: uppercase; font-size: 12px; letter-spacing: .05em; }
+
+.saldo-baixo { color: #b0262c; font-weight: 600; }
+
+.mov-form { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+
+.mov-form select, .mov-form input { padding: 8px 10px; border: 1px solid #ddd; border-radius: 6px; font-size: 13px; }
+
+.mov-form button { padding: 8px 14px; border: none; border-radius: 6px; background: #1a1a1a; color: #fff; cursor: pointer; }
+
+.historico-section { margin-top: 50px; }
+
+.newproduct-btn{
+  border: none;
+  background: #a8c4a494;
+  color: #000;
+  padding: 12px 20px;
+  border-radius: 40px;
+  cursor: pointer;
+  transition: 0.35s ease;
+}
