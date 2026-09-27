@@ -36,25 +36,50 @@ togglePassword.addEventListener('click', () => {
 
 // BOTÃO LOADING
 
-const form =
-document.querySelector('.auth-form');
+const form = document.querySelector('.auth-form');
+const button = document.querySelector('.login-btn');
 
-const button =
-document.querySelector('.login-btn');
+if (form && button) {
+    form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        button.querySelector('span').textContent = 'Entrando...';
+        button.disabled = true;
+        button.style.opacity = '.7';
 
-form.addEventListener('submit', (e) => {
+        try {
+            const response = await fetch(form.action, {
+                method: 'POST',
+                body: new FormData(form),
+                credentials: 'same-origin',
+                redirect: 'follow'
+            });
 
-    e.preventDefault();
+            window.location.assign(response.url);
+        } catch (error) {
+            button.querySelector('span').textContent = 'Entrar';
+            button.disabled = false;
+            button.style.opacity = '1';
+            if (feedback) {
+                feedback.textContent = 'Não foi possível conectar ao servidor.';
+                feedback.classList.add('show');
+            }
+        }
+    });
+}
 
-    button.innerHTML = 'Entrando...';
+const feedback = document.querySelector('#login-feedback');
+const parametros = new URLSearchParams(window.location.search);
+const erro = parametros.get('erro');
+const cadastro = parametros.get('cadastro');
 
-    button.style.opacity = '.7';
+if (feedback && cadastro === 'sucesso') {
+    feedback.textContent = 'Conta criada com sucesso. Entre com seus dados.';
+    feedback.classList.add('show');
+}
 
-    setTimeout(() => {
-
-        button.innerHTML = 'Entrar';
-        button.style.opacity = '1';
-
-    }, 2500);
-
-});
+if (feedback && erro) {
+    feedback.textContent = erro === 'preencha'
+        ? 'Informe seu e-mail e sua senha.'
+        : 'E-mail ou senha inválidos.';
+    feedback.classList.add('show');
+}

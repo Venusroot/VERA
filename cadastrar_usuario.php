@@ -35,22 +35,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             VALUES
                 (:nome, :login, :senha, :email, :cpf, :telefone, :logradouro, :numero, :cep, :bairro, :cidade, :uf)";
 
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([
-        ':nome' => $nome,
-        ':login' => $login,
-        ':senha' => $senha_criptografada,
-        ':email' => $email,
-        ':cpf' => $cpf,
-        ':telefone' => $telefone_pessoal,
-        ':logradouro' => $logradouro,
-        ':numero' => $numero,
-        ':cep' => $cep,
-        ':bairro' => $bairro,
-        ':cidade' => $cidade,
-        ':uf' => $uf
-    ]);
+    try {
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([
+            ':nome' => $nome,
+            ':login' => $login,
+            ':senha' => $senha_criptografada,
+            ':email' => $email,
+            ':cpf' => $cpf,
+            ':telefone' => $telefone_pessoal,
+            ':logradouro' => $logradouro,
+            ':numero' => $numero,
+            ':cep' => $cep,
+            ':bairro' => $bairro,
+            ':cidade' => $cidade,
+            ':uf' => $uf
+        ]);
 
-    echo "<script>alert('Conta criada com sucesso!'); window.location.href='index.html';</script>";
+        header('Location: login.html?cadastro=sucesso');
+        exit;
+    } catch (PDOException $e) {
+        if (($e->errorInfo[1] ?? null) === 1062) {
+            header('Location: register.html?erro=duplicado');
+            exit;
+        }
+
+        http_response_code(500);
+        echo 'Não foi possível criar a conta. Tente novamente.';
+    }
 }
 ?>

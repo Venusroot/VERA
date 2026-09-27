@@ -91,7 +91,8 @@ CREATE TABLE `cadusuario` (
   `senha` varchar(255) COLLATE utf8mb4_unicode_520_ci NOT NULL,
   `email` varchar(100) COLLATE utf8mb4_unicode_520_ci NOT NULL,
   `cpf` varchar(14) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `telefone_pessoal` varchar(20) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `telefone_pessoal` varchar(20) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
+  `telefone` varchar(20) COLLATE utf8mb4_unicode_520_ci NOT NULL DEFAULT '',
   `telefone_comercial` varchar(20) COLLATE utf8mb4_unicode_520_ci DEFAULT NULL,
   `logradouro` varchar(255) COLLATE utf8mb4_unicode_520_ci NOT NULL,
   `numero` varchar(10) COLLATE utf8mb4_unicode_520_ci NOT NULL,
@@ -126,6 +127,7 @@ INSERT INTO `cadusuario` (`id_usuario`, `nome`, `login`, `senha`, `email`, `cpf`
 --
 
 CREATE TABLE `estoqueproduto` (
+  `id_estoque` int(11) NOT NULL,
   `id_produto` int(11) NOT NULL,
   `id_fornecedor` int(11) NOT NULL,
   `qtdDisponivel` int(255) NOT NULL,
@@ -200,7 +202,9 @@ ALTER TABLE `cadusuario`
 -- Índices para tabela `estoqueproduto`
 --
 ALTER TABLE `estoqueproduto`
-  ADD PRIMARY KEY (`id_produto`);
+  ADD PRIMARY KEY (`id_estoque`),
+  ADD KEY `fk_estoque_produto` (`id_produto`),
+  ADD KEY `fk_estoque_fornecedor` (`id_fornecedor`);
 
 --
 -- Índices para tabela `estoque_movimentacao`
@@ -213,7 +217,10 @@ ALTER TABLE `estoque_movimentacao`
 -- Índices para tabela `venda`
 --
 ALTER TABLE `venda`
-  ADD PRIMARY KEY (`id_venda`);
+  ADD PRIMARY KEY (`id_venda`),
+  ADD KEY `fk_venda_usuario` (`id_usuario`),
+  ADD KEY `fk_venda_fornecedor` (`id_fornecedor`),
+  ADD KEY `fk_venda_produto` (`id_produto`);
 
 --
 -- AUTO_INCREMENT de tabelas despejadas
@@ -241,7 +248,7 @@ ALTER TABLE `cadusuario`
 -- AUTO_INCREMENT de tabela `estoqueproduto`
 --
 ALTER TABLE `estoqueproduto`
-  MODIFY `id_produto` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_estoque` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `estoque_movimentacao`
@@ -264,6 +271,15 @@ ALTER TABLE `venda`
 --
 ALTER TABLE `estoque_movimentacao`
   ADD CONSTRAINT `fk_movimentacao_produto` FOREIGN KEY (`id_produto`) REFERENCES `cadproduto` (`id_produto`) ON DELETE CASCADE;
+
+ALTER TABLE `estoqueproduto`
+  ADD CONSTRAINT `fk_estoque_fornecedor` FOREIGN KEY (`id_fornecedor`) REFERENCES `cadfornecedor` (`id_fornecedor`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_estoque_produto` FOREIGN KEY (`id_produto`) REFERENCES `cadproduto` (`id_produto`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `venda`
+  ADD CONSTRAINT `fk_venda_fornecedor` FOREIGN KEY (`id_fornecedor`) REFERENCES `cadfornecedor` (`id_fornecedor`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_venda_produto` FOREIGN KEY (`id_produto`) REFERENCES `cadproduto` (`id_produto`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_venda_usuario` FOREIGN KEY (`id_usuario`) REFERENCES `cadusuario` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -1,8 +1,8 @@
 <?php
-// Conexão compartilhada pelas telas de Produto e Estoque (USBWebserver)
-$servidor = "localhost";
-$usuario  = "root";
-$senha    = "usbw";
+// Conexão compartilhada pelas telas de Produto e Estoque (Docker Compose)
+$servidor = "db";
+$usuario  = "adm";
+$senha    = "adm";
 $banco    = "vera";
 
 $conexao = new mysqli($servidor, $usuario, $senha, $banco);

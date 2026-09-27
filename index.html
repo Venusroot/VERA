@@ -39,10 +39,13 @@
         <a href="#">Noivado</a>
         <a href="#">Casamento</a>
         <a href="#">Coleções</a>
-        <a href="cadastro_produto.html">Cadastre um Produto!</a>
+          <a href="cadastro_produto.html" id="fornecedor-link" hidden>Cadastre um Produto!</a>
       </nav>
 
       <div class="header-actions">
+
+        <span id="user-session" aria-live="polite"></span>
+        <a href="logout.php" id="logout-link" hidden>Sair</a>
 
         <div class="search-box">
           <input type="text" placeholder="Buscar produtos...">
@@ -261,6 +264,7 @@
   <script src="js/script.js"></script>
   <script src="js/cart.js"></script>
   <script src="js/favorites.js"></script>
+  <script src="js/session.js"></script>
 
 </body>
 

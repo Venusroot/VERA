@@ -40,6 +40,18 @@ a {
   border-bottom: 1px solid rgba(0, 0, 0, .05);
 }
 
+#user-session,
+#logout-link {
+  color: var(--black);
+  font-size: .78rem;
+  white-space: nowrap;
+}
+
+#logout-link {
+  color: var(--gold);
+  cursor: pointer;
+}
+
 .top-header {
   max-width: 1400px;
   margin: auto;
