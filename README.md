@@ -169,6 +169,35 @@ Seu propósito é consolidar conhecimentos técnicos adquiridos ao longo da grad
 
 ---
 
+## 🧭 Execução no USBServer
+
+Para rodar este projeto em um ambiente local tipo USBServer, segue a configuração recomendada:
+
+1. Copie toda a pasta do projeto para o diretório web do USBServer.
+2. Crie ou importe o banco `vera` no phpMyAdmin/MySQL do seu ambiente.
+3. Importe o arquivo `vera.sql`.
+4. Acesse a aplicação via navegador usando a pasta do projeto.
+
+A conexão com o banco foi ajustada para aceitar tanto o ambiente de Docker quanto o ambiente local do USBServer. Em ambiente local, o projeto tenta conectar automaticamente com:
+
+- host: `localhost`
+- usuário: `root`
+- senha: vazia
+- banco: `vera`
+
+Se o seu ambiente local usa outro usuário/senha, basta criar variáveis de ambiente antes de iniciar a aplicação:
+
+```bash
+DB_HOST=localhost
+DB_NAME=vera
+DB_USER=root
+DB_PASS=
+```
+
+No USBServer, normalmente o projeto funciona diretamente sem necessidade de Docker.
+
+---
+
 ## 📄 Licença
 
 Este projeto possui caráter acadêmico e educacional.

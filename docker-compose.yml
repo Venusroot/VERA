@@ -6,6 +6,11 @@ services:
     image: vera-web:latest
     ports:
       - "8000:80"
+    environment:
+      DB_HOST: db
+      DB_NAME: vera
+      DB_USER: adm
+      DB_PASS: adm
     extra_hosts:
       - "db:host-gateway"
     volumes:
