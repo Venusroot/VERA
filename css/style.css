@@ -40,6 +40,112 @@ a {
   border-bottom: 1px solid rgba(0, 0, 0, .05);
 }
 
+[hidden] {
+  display: none !important;
+}
+
+.account-menu {
+  position: relative;
+  color: var(--black);
+}
+
+.account-menu summary {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  list-style: none;
+  cursor: pointer;
+}
+
+.account-menu summary::-webkit-details-marker {
+  display: none;
+}
+
+.account-avatar {
+  display: grid;
+  width: 36px;
+  aspect-ratio: 1;
+  place-items: center;
+  border: 1px solid rgba(200, 169, 107, .55);
+  border-radius: 50%;
+  color: #8f6d32;
+}
+
+.account-copy {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.account-greeting {
+  color: #8f6d32;
+  font-size: .58rem;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.account-name {
+  max-width: 150px;
+  overflow: hidden;
+  font-size: .8rem;
+  font-weight: 500;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.account-chevron {
+  color: #8f6d32;
+  font-size: .65rem !important;
+  transition: transform .2s ease;
+}
+
+.account-menu[open] .account-chevron {
+  transform: rotate(180deg);
+}
+
+.account-dropdown {
+  position: absolute;
+  top: calc(100% + 16px);
+  right: 0;
+  z-index: 1100;
+  display: grid;
+  width: max-content;
+  min-width: 230px;
+  padding: 7px;
+  border: 1px solid rgba(0, 0, 0, .08);
+  background: #fff;
+  box-shadow: 0 14px 35px rgba(0, 0, 0, .14);
+}
+
+.account-dropdown a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 42px;
+  padding: 0 12px;
+  color: #28251f;
+  font-size: .8rem;
+  white-space: nowrap;
+}
+
+.account-dropdown a:hover,
+.account-dropdown a:focus-visible {
+  background: #f6f3ed;
+  color: #78591f;
+}
+
+.account-dropdown a i {
+  width: 16px;
+  color: #a27b39;
+  font-size: .9rem;
+}
+
+.account-dropdown .account-logout {
+  margin-top: 5px;
+  border-top: 1px solid #eee9e0;
+  color: #775d36;
+}
+
 .top-header {
   max-width: 1400px;
   margin: auto;
@@ -548,6 +654,10 @@ a {
     gap:14px;
   }
 
+  .account-dropdown {
+    top: calc(100% + 12px);
+  }
+
   .search-box input{
     width:160px;
   }
@@ -604,4 +714,14 @@ a {
     visibility:visible;
   }
 
+}
+
+@media(max-width:600px) {
+  .search-box {
+    display: none;
+  }
+
+  .account-name {
+    max-width: 105px;
+  }
 }

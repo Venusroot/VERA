@@ -107,7 +107,7 @@ body {
     background:
         linear-gradient(rgba(0, 0, 0, .5),
             rgba(0, 0, 0, .75)),
-        url('../assets/images/login-bg.jpg') center/cover no-repeat;
+        url('../assets/images/anel_01.jpg') center/cover no-repeat;
     display: flex;
     align-items: flex-end;
     padding: 80px;
@@ -191,6 +191,29 @@ body {
     color: #aaa;
     margin: 15px 0 40px;
     line-height: 1.7;
+}
+
+.account-type-label {
+    display: block;
+    margin-bottom: 8px;
+    color: #aaa;
+    font-size: 14px;
+}
+
+.account-type-select {
+    width: 100%;
+    height: 52px;
+    margin-bottom: 25px;
+    padding: 0 16px;
+    border: 1px solid rgba(255, 255, 255, .12);
+    background: #171717;
+    color: #fff;
+    font-size: 15px;
+    outline: none;
+}
+
+.account-type-select:focus {
+    border-color: #d4af37;
 }
 
 /* INPUTS */
@@ -392,4 +415,114 @@ body {
         font-size: 42px;
     }
 
+}
+
+/* Fundo escurecido do Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 15px;
+}
+
+/* Oculta o modal quando tem o atributo hidden */
+.modal-overlay[hidden] {
+  display: none !important;
+}
+
+/* Caixa de Conteúdo */
+.modal-card {
+  background: #ffffff;
+  padding: 32px 24px;
+  border-radius: 12px;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  animation: modalFadeIn 0.25s ease-out;
+}
+
+@keyframes modalFadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.modal-card h3 {
+  margin-top: 0;
+  margin-bottom: 8px;
+  font-size: 1.25rem;
+  color: #1a1a1a;
+}
+
+.modal-card p {
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 24px;
+}
+
+/* Botão de Fechar (X) */
+.modal-close-btn {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #999;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.modal-close-btn:hover {
+  color: #000;
+}
+
+/* Botões de Opção */
+.modal-options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.modal-option-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+}
+
+/* Estilo do botão Cliente */
+.btn-client {
+  background-color: #f3f3f3;
+  color: #333333;
+  border: 1px solid #e0e0e0;
+}
+
+.btn-client:hover {
+  background-color: #e5e5e5;
+  color: #000;
+}
+
+/* Estilo do botão Fornecedor */
+.btn-supplier {
+  background-color: #1a1a1a;
+  color: #ffffff;
+}
+
+.btn-supplier:hover {
+  background-color: #333333;
 }

@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Produtos - VERA</title>
 
-  <link rel="icon" type="image/png" href="assets/images/favicon.png" />
+  <link rel="icon" type="image/png" href="assets/images/faricon.png" />
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/animations.css" />
   <link rel="stylesheet" href="css/responsive.css" />
@@ -35,11 +35,11 @@
       </a>
 
       <nav class="navbar">
-        <a href="#">Novidades</a>
-        <a href="#">Alianças</a>
-        <a href="#">Noivado</a>
-        <a href="#">Casamento</a>
-        <a href="#">Coleções</a>
+        <a href="produtos.html">Novidades</a>
+        <a href="produtos.html?category=alianca">Alianças</a>
+        <a href="produtos.html?category=noivado">Noivado</a>
+        <a href="produtos.html?category=casamento">Casamento</a>
+        <a href="produtos.html">Coleções</a>
       </nav>
 
       <div class="header-actions">
@@ -57,7 +57,32 @@
           <span class="cart-count">0</span>
         </a>
 
-        <a href="login.html" class="icon-link" aria-label="Minha conta">
+        <details class="account-menu" id="account-menu" hidden>
+          <summary id="user-session" aria-live="polite">
+            <span class="account-avatar"><i class="fa-regular fa-user"></i></span>
+            <span class="account-copy">
+              <span class="account-greeting">CONTA</span>
+              <strong class="account-name" id="account-name"></strong>
+            </span>
+            <i class="fa-solid fa-chevron-down account-chevron"></i>
+          </summary>
+          <div class="account-dropdown">
+            <a href="cadastro_produto.html" data-account-link="supplier" hidden>
+              <i class="fa-solid fa-plus"></i><span>Cadastrar produto</span>
+            </a>
+            <a href="produtos_fornecedor.php" data-account-link="supplier" hidden>
+              <i class="fa-solid fa-gem"></i><span>Produtos cadastrados</span>
+            </a>
+            <a href="estoque.php" data-account-link="supplier" hidden>
+              <i class="fa-solid fa-boxes-stacked"></i><span>Estoque</span>
+            </a>
+            <a href="logout.php" class="account-logout">
+              <i class="fa-solid fa-arrow-right-from-bracket"></i><span>Sair</span>
+            </a>
+          </div>
+        </details>
+
+        <a href="login.html" class="icon-link" id="login-link" aria-label="Entrar">
           <i class="fa-regular fa-user"></i>
         </a>
 
@@ -680,6 +705,7 @@
   <script src="js/script.js"></script>
   <script src="js/cart.js"></script>
   <script src="js/favorites.js"></script>
+  <script src="js/session.js"></script>
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -860,10 +886,128 @@
         }
       });
 
+// 1. Seleção de tamanho no modal
+      const sizeButtons = document.querySelectorAll('.sizes button');
+      sizeButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          sizeButtons.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+        });
+      });
+
+      // 2. Adicionar ao carrinho (LocalStorage)
+      const addToCartBtn = document.querySelector('.modal-actions .btn-outline');
+      if (addToCartBtn) {
+        addToCartBtn.addEventListener('click', () => {
+          const title = modalTitle.textContent;
+          const priceText = modalPrice.textContent;
+          const numericPrice = parseFloat(priceText.replace(/[^\d,]/g, '').replace(',', '.'));
+          const image = modalMainImage.src;
+          const selectedSize = document.querySelector('.sizes button.active')?.textContent || '';
+
+          const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+          
+          const existingIndex = cart.findIndex(item => item.name === title && item.size === selectedSize);
+          if (existingIndex > -1) {
+            cart[existingIndex].quantity = (cart[existingIndex].quantity || 1) + 1;
+          } else {
+            cart.push({
+              name: title,
+              price: priceText,
+              numericPrice: numericPrice,
+              image: image,
+              size: selectedSize,
+              quantity: 1
+            });
+          }
+
+          localStorage.setItem('cart', JSON.stringify(cart));
+
+          // Atualiza contador da sacola no header
+          const cartCount = document.querySelector('.cart-count');
+          if (cartCount) {
+            const totalQty = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+            cartCount.textContent = totalQty;
+          }
+
+          alert(`${title} foi adicionado à sacola!`);
+          closeProductModal();
+        });
+      }
+
+      // Botão "Comprar Agora": Adiciona à sacola e redireciona direto
+      const buyNowBtn = document.querySelector('.modal-actions .btn-dark');
+      if (buyNowBtn && addToCartBtn) {
+        buyNowBtn.addEventListener('click', () => {
+          addToCartBtn.click();
+          window.location.href = 'cart.html';
+        });
+      }
+
+      // 3. Ler o parâmetro de categoria da URL e filtrar automaticamente ao carregar a página
+      const urlParams = new URLSearchParams(window.location.search);
+      const categoryParam = urlParams.get('category');
+      if (categoryParam) {
+        const targetCheckbox = document.querySelector(`.filter-checkbox[name="category"][value="${categoryParam}"]`);
+        if (targetCheckbox) {
+          targetCheckbox.checked = true;
+        }
+      }
+
+// 1. Função auxiliar para marcar a categoria de forma segura
+      function applyCategoryFilter(categoryValue) {
+        if (!categoryValue) return;
+
+        // Desmarca todas as categorias antes
+        const checkboxes = document.querySelectorAll('.filter-checkbox[name="category"]');
+        checkboxes.forEach(cb => cb.checked = false);
+
+        // Busca o checkbox correspondente (ignorando diferenças de maiúsculas/minúsculas)
+        const targetCheckbox = Array.from(checkboxes).find(cb => 
+          cb.value.toLowerCase() === categoryValue.toLowerCase()
+        );
+
+        if (targetCheckbox) {
+          targetCheckbox.checked = true;
+          if (typeof filterProducts === 'function') {
+            filterProducts();
+          }
+        }
+      }
+
+      // 2. Aplicar filtro vindo da URL ao carregar a página
+      const urlParams = new URLSearchParams(window.location.search);
+      const categoryFromUrl = urlParams.get('category');
+      if (categoryFromUrl) {
+        applyCategoryFilter(categoryFromUrl);
+      }
+
+      // 3. Interceptar cliques no menu APENAS dentro de produtos.html
+      const categoryMenuLinks = document.querySelectorAll('.navbar a[href*="category="]');
+      categoryMenuLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+
+          try {
+            const url = new URL(link.href, window.location.origin);
+            const category = url.searchParams.get('category');
+
+            applyCategoryFilter(category);
+
+            // Atualiza a barra de endereço sem recarregar
+            window.history.pushState({}, '', link.href);
+          } catch (err) {
+            // Em caso de fallback, redireciona normalmente
+            window.location.href = link.href;
+          }
+        });
+      });
+      
       updatePriceDisplay();
       filterProducts();
     });
-  </script>
+
+</script>
 </body>
 
 </html>
