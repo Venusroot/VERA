@@ -1,7 +1,6 @@
 // ===== LOADER =====
 
 window.addEventListener('load', () => {
-
     const loader = document.querySelector('.loader');
     if (loader) {
         setTimeout(() => {
@@ -13,9 +12,7 @@ window.addEventListener('load', () => {
 // ===== MOSTRAR / OCULTAR SENHA =====
 
 document.querySelectorAll('.toggle-password').forEach((toggle) => {
-
     const input = document.querySelector(toggle.dataset.target);
-
     if (!input) return;
 
     toggle.addEventListener('click', () => {
@@ -24,9 +21,7 @@ document.querySelectorAll('.toggle-password').forEach((toggle) => {
 
         toggle.classList.toggle('fa-eye');
         toggle.classList.toggle('fa-eye-slash');
-
     });
-
 });
 
 // ===== MÁSCARAS =====
@@ -34,7 +29,6 @@ document.querySelectorAll('.toggle-password').forEach((toggle) => {
 const onlyDigits = (v) => v.replace(/\D/g, '');
 
 const masks = {
-
     cpf(value) {
         return onlyDigits(value)
             .slice(0, 11)
@@ -61,22 +55,16 @@ const masks = {
             .replace(/^(\d{2})(\d)/, '($1) $2')
             .replace(/(\d{5})(\d)/, '$1-$2');
     }
-
 };
 
 document.querySelectorAll('[data-mask]').forEach((input) => {
-
     const applyMask = () => {
-
         const fn = masks[input.dataset.mask];
-
         if (fn) input.value = fn(input.value);
-
     };
 
     input.addEventListener('input', applyMask);
     input.addEventListener('blur', applyMask);
-
 });
 
 // ===== BUSCA DE CEP (ViaCEP) =====
@@ -84,17 +72,13 @@ document.querySelectorAll('[data-mask]').forEach((input) => {
 const cepInput = document.querySelector('#cep');
 
 if (cepInput) {
-
     cepInput.addEventListener('blur', async () => {
-
         const cep = onlyDigits(cepInput.value);
-
         if (cep.length !== 8) return;
 
         cepInput.style.opacity = '.6';
 
         try {
-
             const response = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
             const data = await response.json();
 
@@ -106,17 +90,11 @@ if (cepInput) {
             document.querySelector('#uf').value = data.uf || '';
 
         } catch (error) {
-
             console.warn('Não foi possível buscar o CEP.', error);
-
         } finally {
-
             cepInput.style.opacity = '1';
-
         }
-
     });
-
 }
 
 // ===== ESTRANGEIRO =====
@@ -124,7 +102,6 @@ if (cepInput) {
 const estrangeiro = document.querySelector('#estrangeiro');
 
 if (estrangeiro) {
-
     const camposEstrangeiro = [
         document.querySelector('#nacionalidade'),
         document.querySelector('#documento')
@@ -140,7 +117,6 @@ if (estrangeiro) {
     ];
 
     estrangeiro.addEventListener('change', () => {
-
         const ativo = estrangeiro.checked;
 
         camposEstrangeiro.forEach((campo) => {
@@ -154,9 +130,7 @@ if (estrangeiro) {
             campo.disabled = ativo;
             if (ativo) campo.value = '';
         });
-
     });
-
 }
 
 // ===== VALIDAÇÃO + ENVIO PARA O PHP =====
@@ -172,13 +146,11 @@ function mostrarErro(mensagem) {
     if (!errorBox) return;
     errorBox.textContent = mensagem;
     errorBox.classList.toggle('show', Boolean(mensagem));
-
 }
 
 function senhasConferem() {
     if (!confirmarSenha || !confirmarSenha.value) return true;
     return senha.value === confirmarSenha.value;
-    
 }
 
 if (confirmarSenha) {
