@@ -58,16 +58,24 @@
           Acesse sua conta para continuar sua experiência premium.
         </p>
 
-        <form class="auth-form">
-          <!-- EMAIL -->
+        <p class="login-feedback" id="login-feedback" role="alert"></p>
+
+        <form class="auth-form" action="login.php" method="POST">
+          <label class="account-type-label" for="tipo-conta">Tipo de conta</label>
+          <select id="tipo-conta" name="tipo_conta" class="account-type-select" required>
+            <option value="usuario">Cliente</option>
+            <option value="fornecedor">Fornecedor</option>
+          </select>
+
+          <!-- E-MAIL OU LOGIN -->
           <div class="input-group">
-            <input type="email" required />
-            <label>E-mail</label>
+            <input type="text" name="identificador" autocomplete="username" required />
+            <label>E-mail ou login</label>
           </div>
 
           <!-- SENHA -->
           <div class="input-group password-group">
-            <input type="password" id="password" required />
+            <input type="password" id="password" name="senha" autocomplete="current-password" required />
 
             <label>Senha</label>
 
@@ -111,13 +119,38 @@
         <!-- CADASTRO -->
         <p class="signup-text">
           Ainda não possui conta?
-          <a href="register.html">Criar conta</a>
+          <!-- <a href="register.html">Criar conta</a> -->
+          <a href="#" id="open-register-modal">Criar conta</a>
         </p>
       </div>
     </div>
   </section>
 
   <script src="js/login.js"></script>
+
+  <!-- Modal de Escolha do Tipo de Conta -->
+<div id="register-modal" class="modal-overlay" hidden>
+  <div class="modal-card">
+    <button type="button" class="modal-close-btn" id="close-register-modal" aria-label="Fechar">&times;</button>
+    
+    <h3>Como deseja se cadastrar?</h3>
+    <p>Escolha a opção que melhor descreve o seu perfil:</p>
+
+    <div class="modal-options">
+      <!-- Opção Cliente -->
+      <a href="register.html" class="modal-option-btn btn-client">
+        <i class="fa-solid fa-user"></i>
+        <span>Sou cliente</span>
+      </a>
+
+      <!-- Opção Fornecedor -->
+      <a href="cadastro_fornecedor.html" class="modal-option-btn btn-supplier">
+        <i class="fa-solid fa-store"></i>
+        <span>Sou fornecedor</span>
+      </a>
+    </div>
+  </div>
+</div>
 </body>
 
 </html>

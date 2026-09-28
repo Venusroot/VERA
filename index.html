@@ -27,48 +27,86 @@
   </div>
 
   <header class="header">
-    <div class="top-header">
+  <div class="top-header">
 
-      <a href="index.html" class="logo">
-        <img src="assets/images/logo.png" alt="VERA">
+    <!-- Logo -->
+    <a href="index.html" class="logo">
+      <img src="assets/images/logo.png" alt="VERA">
+    </a>
+
+    <!-- Navegação / Categorias -->
+    <nav class="navbar">
+      <a href="produtos.html">Novidades</a>
+      <a href="produtos.html?category=alianca">Alianças</a>
+      <a href="produtos.html?category=noivado">Noivado</a>
+      <a href="produtos.html?category=casamento">Casamento</a>
+      <a href="produtos.html">Coleções</a>
+    </nav>
+
+    <!-- Ações do Cabeçalho -->
+    <div class="header-actions">
+      
+      <!-- Busca -->
+      <div class="search-box">
+        <input type="text" placeholder="Buscar produtos...">
+        <i class="fa-solid fa-search"></i>
+      </div>
+
+      <!-- Favoritos -->
+      <a href="favorites.html" class="icon-link" aria-label="Favoritos">
+        <i class="fa-regular fa-heart"></i>
       </a>
 
-      <nav class="navbar">
-        <a href="#">Novidades</a>
-        <a href="#">Alianças</a>
-        <a href="#">Noivado</a>
-        <a href="#">Casamento</a>
-        <a href="#">Coleções</a>
-      </nav>
+      <!-- Sacola / Carrinho -->
+      <a href="cart.html" class="cart-icon icon-link" aria-label="Sacola de compras">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <span class="cart-count">0</span>
+      </a>
 
-      <div class="header-actions">
-
-        <div class="search-box">
-          <input type="text" placeholder="Buscar produtos...">
-          <i class="fa-solid fa-search"></i>
+      <!-- Menu da Conta (Exibido quando Logado) -->
+      <details class="account-menu" id="account-menu" hidden>
+        <summary id="user-session" aria-live="polite">
+          <span class="account-avatar"><i class="fa-regular fa-user"></i></span>
+          <span class="account-copy">
+            <span class="account-greeting">CONTA</span>
+            <strong class="account-name" id="account-name"></strong>
+          </span>
+          <i class="fa-solid fa-chevron-down account-chevron"></i>
+        </summary>
+        
+        <div class="account-dropdown">
+          <!-- Links Exclusivos para Vendedor/Fornecedor -->
+          <a href="cadastro_produto.html" data-account-link="supplier" hidden>
+            <i class="fa-solid fa-plus"></i><span>Vender / Cadastrar produto</span>
+          </a>
+          <a href="produtos_fornecedor.php" data-account-link="supplier" hidden>
+            <i class="fa-solid fa-gem"></i><span>Meus Produtos</span>
+          </a>
+          <a href="estoque.php" data-account-link="supplier" hidden>
+            <i class="fa-solid fa-boxes-stacked"></i><span>Estoque</span>
+          </a>
+          
+          <!-- Botão de Sair -->
+          <a href="#" id="logout-btn" class="account-logout">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i><span>Sair</span>
+          </a>
         </div>
+      </details>
 
-        <a href="favorites.html" class="icon-link">
-          <i class="fa-regular fa-heart"></i>
-        </a>
+      <!-- Ícone de Login (Exibido quando Deslogado) -->
+      <a href="login.html" class="icon-link" id="login-link" aria-label="Entrar">
+        <i class="fa-regular fa-user"></i>
+      </a>
 
-        <a href="cart.html" class="cart-icon icon-link">
-          <i class="fa-solid fa-bag-shopping"></i>
-          <span class="cart-count">0</span>
-        </a>
-
-        <a href="login.html" class="icon-link">
-          <i class="fa-regular fa-user"></i>
-        </a>
-
-        <div class="menu-toggle" id="mobile-menu-btn">
-          <i class="fa-solid fa-bars"></i>
-        </div>
-
+      <!-- Menu Mobile Toggle -->
+      <div class="menu-toggle" id="mobile-menu-btn">
+        <i class="fa-solid fa-bars"></i>
       </div>
 
     </div>
-  </header>
+
+  </div>
+</header>
 
   <section class="hero">
 
@@ -260,6 +298,7 @@
   <script src="js/script.js"></script>
   <script src="js/cart.js"></script>
   <script src="js/favorites.js"></script>
+  <script src="js/session.js"></script>
 
 </body>
 
