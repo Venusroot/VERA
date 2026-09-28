@@ -39,14 +39,9 @@
         <a href="#">Noivado</a>
         <a href="#">Casamento</a>
         <a href="#">Coleções</a>
-          <a href="cadastro_produto.html" id="fornecedor-link" hidden>Cadastre um Produto!</a>
       </nav>
 
       <div class="header-actions">
-
-        <span id="user-session" aria-live="polite"></span>
-        <a href="logout.php" id="logout-link" hidden>Sair</a>
-
         <div class="search-box">
           <input type="text" placeholder="Buscar produtos...">
           <i class="fa-solid fa-search"></i>
@@ -61,7 +56,32 @@
           <span class="cart-count">0</span>
         </a>
 
-        <a href="login.html" class="icon-link">
+        <details class="account-menu" id="account-menu" hidden>
+          <summary id="user-session" aria-live="polite">
+            <span class="account-avatar"><i class="fa-regular fa-user"></i></span>
+            <span class="account-copy">
+              <span class="account-greeting">CONTA</span>
+              <strong class="account-name" id="account-name"></strong>
+            </span>
+            <i class="fa-solid fa-chevron-down account-chevron"></i>
+          </summary>
+          <div class="account-dropdown">
+            <a href="cadastro_produto.html" data-account-link="supplier" hidden>
+              <i class="fa-solid fa-plus"></i><span>Cadastrar produto</span>
+            </a>
+            <a href="produtos_fornecedor.php" data-account-link="supplier" hidden>
+              <i class="fa-solid fa-gem"></i><span>Produtos cadastrados</span>
+            </a>
+            <a href="estoque.php" data-account-link="supplier" hidden>
+              <i class="fa-solid fa-boxes-stacked"></i><span>Estoque</span>
+            </a>
+            <a href="logout.php" class="account-logout">
+              <i class="fa-solid fa-arrow-right-from-bracket"></i><span>Sair</span>
+            </a>
+          </div>
+        </details>
+
+        <a href="login.html" class="icon-link" id="login-link" aria-label="Entrar">
           <i class="fa-regular fa-user"></i>
         </a>
 

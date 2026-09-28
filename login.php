@@ -8,32 +8,37 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
-$identificador = trim($_POST['identificador'] ?? $_POST['email'] ?? '');
-$senha = $_POST['senha'] ?? '';
+$identificador = trim(vera_array_value($_POST, 'identificador', vera_array_value($_POST, 'email', '')));
+$senha = vera_array_value($_POST, 'senha', '');
+$tipo = vera_array_value($_POST, 'tipo_conta', 'usuario');
 
-if ($identificador === '' || $senha === '') {
+if ($identificador === '' || $senha === '' || !in_array($tipo, ['usuario', 'fornecedor'], true)) {
     header('Location: login.html?erro=preencha');
     exit;
 }
 
-$stmt = $pdo->prepare(
-        'SELECT id_usuario AS id, nome, email, senha, \'usuario\' AS tipo
-       FROM cadusuario
-            WHERE email = :identificador_usuario OR login = :identificador_login
-      UNION ALL
-     SELECT id_fornecedor AS id, nomeFantasia AS nome, email, senha, \'fornecedor\' AS tipo
-       FROM cadfornecedor
-            WHERE email = :identificador_fornecedor
-      LIMIT 1'
-);
-$stmt->execute([
-        ':identificador_usuario' => $identificador,
-        ':identificador_login' => $identificador,
-        ':identificador_fornecedor' => $identificador,
-]);
-$usuario = $stmt->fetch();
+$usuario = false;
+$tipoAutenticado = null;
+$tiposParaVerificar = [$tipo, $tipo === 'fornecedor' ? 'usuario' : 'fornecedor'];
 
-if (!$usuario || !password_verify($senha, $usuario['senha'])) {
+foreach ($tiposParaVerificar as $tipoVerificado) {
+    $sql = $tipoVerificado === 'fornecedor'
+        ? 'SELECT id_fornecedor AS id, nomeFantasia AS nome, email, senha FROM cadfornecedor WHERE email = :identificador'
+        : 'SELECT id_usuario AS id, nome, email, senha FROM cadusuario WHERE email = :email OR login = :login';
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute($tipoVerificado === 'fornecedor'
+        ? [':identificador' => $identificador]
+        : [':email' => $identificador, ':login' => $identificador]);
+    $candidato = $stmt->fetch();
+
+    if ($candidato && vera_password_verify($senha, $candidato['senha'])) {
+        $usuario = $candidato;
+        $tipoAutenticado = $tipoVerificado;
+        break;
+    }
+}
+
+if (!$usuario || $tipoAutenticado === null) {
     header('Location: login.html?erro=credenciais');
     exit;
 }
@@ -43,7 +48,7 @@ $_SESSION['usuario'] = [
     'id' => (int) $usuario['id'],
     'nome' => $usuario['nome'],
     'email' => $usuario['email'],
-    'tipo' => $usuario['tipo'],
+    'tipo' => $tipoAutenticado,
 ];
 
 header('Location: index.html?login=sucesso');

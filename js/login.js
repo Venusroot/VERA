@@ -79,7 +79,9 @@ if (feedback && cadastro === 'sucesso') {
 
 if (feedback && erro) {
     feedback.textContent = erro === 'preencha'
-        ? 'Informe seu e-mail e sua senha.'
-        : 'E-mail ou senha inválidos.';
+        ? 'Informe seu e-mail/login e sua senha.'
+        : erro === 'fornecedor'
+            ? 'Entre com uma conta de fornecedor para cadastrar produtos.'
+            : 'E-mail/login ou senha inválidos para o tipo de conta selecionado.';
     feedback.classList.add('show');
 }

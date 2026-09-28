@@ -6,20 +6,19 @@ require_once __DIR__ . '/db.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     // Capturar os dados enviados pelos 'name' dos inputs do formulário HTML
-    $nome = $_POST['nome'] ?? '';
-    $login = $_POST['login'] ?? ''; 
-    $email = $_POST['email'] ?? '';
-    $senha_usuario = $_POST['senha'] ?? '';
-    $confirmar_senha = $_POST['confirmar_senha'] ?? '';
-    $cpf = $_POST['cpf'] ?? '';
-    $telefone_pessoal = $_POST['telefone_pessoal'] ?? '';
-    $telefone_pessoal = $_POST['telefone_pessoal'] ?? '';
-    $logradouro = $_POST['logradouro'] ?? '';
-    $numero = $_POST['numero'] ?? '';
-    $cep = $_POST['cep'] ?? '';
-    $bairro = $_POST['bairro'] ?? '';
-    $cidade = $_POST['cidade'] ?? '';
-    $uf = $_POST['uf'] ?? '';
+    $nome = vera_array_value($_POST, 'nome', '');
+    $login = vera_array_value($_POST, 'login', '');
+    $email = vera_array_value($_POST, 'email', '');
+    $senha_usuario = vera_array_value($_POST, 'senha', '');
+    $confirmar_senha = vera_array_value($_POST, 'confirmar_senha', '');
+    $cpf = vera_array_value($_POST, 'cpf', '');
+    $telefone_pessoal = vera_array_value($_POST, 'telefone_pessoal', '');
+    $logradouro = vera_array_value($_POST, 'logradouro', '');
+    $numero = vera_array_value($_POST, 'numero', '');
+    $cep = vera_array_value($_POST, 'cep', '');
+    $bairro = vera_array_value($_POST, 'bairro', '');
+    $cidade = vera_array_value($_POST, 'cidade', '');
+    $uf = vera_array_value($_POST, 'uf', '');
 
     // Validação se as senhas coincidem
     if ($senha_usuario !== $confirmar_senha) {
@@ -28,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Criptografar a senha por segurança
-    $senha_criptografada = password_hash($senha_usuario, PASSWORD_DEFAULT);
+    $senha_criptografada = vera_password_hash($senha_usuario);
 
     $sql = "INSERT INTO cadusuario
                 (nome, login, senha, email, cpf, telefone, logradouro, numero, cep, bairro, cidade, uf)
@@ -55,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header('Location: login.html?cadastro=sucesso');
         exit;
     } catch (PDOException $e) {
-        if (($e->errorInfo[1] ?? null) === 1062) {
+        if (vera_array_value($e->errorInfo, 1) === 1062) {
             header('Location: register.html?erro=duplicado');
             exit;
         }
