@@ -8,7 +8,7 @@ O **VERA** é um projeto acadêmico desenvolvido no curso de **Desenvolvimento d
 
 O projeto nasceu com a proposta de aplicar conceitos de desenvolvimento web, experiência do usuário (UX), arquitetura de software e gestão de produtos digitais em um cenário real de mercado.
 
-Atualmente, o sistema encontra-se em sua primeira versão funcional, construída utilizando tecnologias de front-end, servindo como base para futuras implementações e evoluções ao longo da graduação.
+O sistema possui uma interface em HTML, CSS e JavaScript e um back-end PHP integrado ao MySQL para autenticação, cadastro de clientes e fornecedores, produtos e estoque.
 
 ---
 
@@ -28,12 +28,15 @@ O VERA busca resolver desafios comuns encontrados em marketplaces tradicionais, 
 
 ## 🚀 Tecnologias Utilizadas
 
-Nesta primeira etapa do desenvolvimento, o projeto foi construído utilizando:
+O projeto utiliza:
 
 * HTML5
 * CSS3
 * JavaScript (ES6+)
-* LocalStorage
+* PHP 8.2 no ambiente Docker e PHP com `mysqli`/`pdo_mysql` no USBServer
+* MySQL 8.0 no ambiente Docker
+* LocalStorage para carrinho e favoritos
+* Docker Compose (opcional)
 * Git
 * GitHub
 
@@ -41,7 +44,7 @@ Nesta primeira etapa do desenvolvimento, o projeto foi construído utilizando:
 
 ## 🏗️ Arquitetura Atual
 
-A aplicação segue uma arquitetura baseada em componentes reutilizáveis utilizando JavaScript puro, priorizando:
+A aplicação separa as páginas e estilos da interface do back-end PHP, que acessa o MySQL por PDO e MySQLi. O JavaScript puro cuida das interações no navegador, priorizando:
 
 * Organização modular do código;
 * Separação de responsabilidades;
@@ -70,9 +73,9 @@ Permite que usuários salvem produtos de interesse para futuras consultas.
 * Atualização automática de quantidades;
 * Persistência local utilizando LocalStorage.
 
-### Autenticação Simulada
+### Autenticação
 
-Estrutura preparada para futura integração com sistemas reais de autenticação.
+Login e cadastro de clientes e fornecedores são processados pelo PHP, com senhas armazenadas por hash e sessão no servidor. Fornecedores têm acesso às próprias páginas de produtos e estoque.
 
 ### Design Responsivo
 
@@ -86,21 +89,11 @@ O projeto foi concebido para crescer ao longo da graduação, incorporando novas
 
 ### Próximas Implementações
 
-#### Back-end
-
-* Node.js
-* Express.js
-* APIs REST
-
-#### Banco de Dados
-
-* MySQL
-
 #### Segurança
 
-* JWT Authentication
-* Criptografia de senhas
-* Controle de acesso por perfil
+* Revisão adicional de segurança para produção;
+* Validações completas dos dados de cadastro;
+* Recuperação de senha e proteção contra tentativas automatizadas.
 
 #### Marketplace Completo
 
@@ -169,32 +162,53 @@ Seu propósito é consolidar conhecimentos técnicos adquiridos ao longo da grad
 
 ---
 
-## 🧭 Execução no USBServer
+## Execução com Docker
 
-Para rodar este projeto em um ambiente local tipo USBServer, segue a configuração recomendada:
+Requisitos: Docker Desktop ou Docker Engine com o comando `docker compose` disponível.
 
-1. Copie toda a pasta do projeto para o diretório web do USBServer.
-2. Crie ou importe o banco `vera` no phpMyAdmin/MySQL do seu ambiente.
-3. Importe o arquivo `vera.sql`.
-4. Acesse a aplicação via navegador usando a pasta do projeto.
+1. Copie `.env.example` para `.env` e ajuste as senhas de desenvolvimento, se necessário.
+2. Na pasta do projeto, execute:
 
-A conexão com o banco foi ajustada para aceitar tanto o ambiente de Docker quanto o ambiente local do USBServer. Em ambiente local, o projeto tenta conectar automaticamente com:
+```powershell
+docker compose up --build
+```
+
+3. Acesse `http://localhost:8000` (ou a porta indicada por `WEB_PORT` no `.env`).
+
+O MySQL usa a porta interna 3306 e é publicado apenas em `127.0.0.1:3307` por padrão. Altere `MYSQL_FORWARD_PORT` se a porta já estiver ocupada. O Compose importa `vera.sql` automaticamente somente ao criar o volume de dados pela primeira vez; `db_data` preserva os dados entre reinicializações.
+
+Para encerrar, pressione `Ctrl+C` e execute `docker compose down`. Isso mantém o banco. Evite `docker compose down -v` se quiser preservar os dados.
+
+## Execução no USBServer
+
+Requisitos: Apache/PHP e MySQL. Recomenda-se PHP 8.1 ou superior, com as extensões `mysqli`, `pdo_mysql` e mysqlnd para `mysqli_stmt::get_result()`. O USBServer usado no desenvolvimento inclui PHP 5.4.17, que é legado e não recomendado para exposição pública. Não abra os HTML diretamente pelo sistema de arquivos; use o servidor para que PHP, banco e sessões funcionem.
+
+1. Copie a pasta completa para o diretório web do USBServer.
+2. No phpMyAdmin, crie o banco `vera` com charset `utf8mb4` e importe `vera.sql`.
+3. Confira o host, usuário, senha e porta MySQL. Os padrões abaixo correspondem à instalação USBServer usada no desenvolvimento.
+4. Acesse `http://localhost/<pasta-do-projeto>/index.html`.
+
+Os valores padrão são:
 
 - host: `localhost`
 - usuário: `root`
-- senha: vazia
+- senha: `usbw`
+- porta: `3307`
 - banco: `vera`
 
-Se o seu ambiente local usa outro usuário/senha, basta criar variáveis de ambiente antes de iniciar a aplicação:
+Se a outra máquina usar valores diferentes, defina `DB_HOST`, `DB_NAME`, `DB_USER`, `DB_PASS` e `DB_PORT` no ambiente do Apache/PHP ou ajuste os valores padrão nos dois arquivos de conexão (`db.php` e `conexao_produto.php`). O arquivo `.env` é lido automaticamente pelo Docker Compose, não pelo USBServer.
 
-```bash
-DB_HOST=localhost
-DB_NAME=vera
-DB_USER=root
-DB_PASS=
-```
+No USBServer, Docker não é necessário.
 
-No USBServer, normalmente o projeto funciona diretamente sem necessidade de Docker.
+## Transferência e observações
+
+Copie a pasta completa, incluindo `assets`, `css`, `js`, `vera.sql`, `Dockerfile` e `docker-compose.yml`. Não é necessário copiar os dados internos de um volume Docker: em uma máquina nova, o banco é criado e preenchido a partir do dump.
+
+`vera.sql` contém registros de demonstração, inclusive dados pessoais e hashes de senha. Revise ou substitua esses registros antes de publicar ou compartilhar o projeto. As senhas de exemplo do Docker são apenas para desenvolvimento local.
+
+Google Fonts, Font Awesome, imagens externas e o ViaCEP dependem de internet. Sem rede, o site ainda abre, mas fontes, ícones, imagens externas e consulta de CEP podem não carregar.
+
+O projeto não requer Node.js/npm nem possui `package.json`.
 
 ---
 

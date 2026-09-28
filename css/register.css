@@ -106,6 +106,16 @@ body {
     border-color: rgba(212, 175, 55, .4);
 }
 
+.product-back-button {
+    position: static;
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    margin: 0 0 34px;
+    color: rgba(255, 255, 255, .82);
+    letter-spacing: .04em;
+}
+
 /* ===== LADO VISUAL ===== */
 
 .auth-visual {
@@ -113,7 +123,7 @@ body {
     background:
         linear-gradient(rgba(0, 0, 0, .5),
             rgba(0, 0, 0, .75)),
-        url('../assets/images/login-bg.jpg') center/cover no-repeat;
+        url('../assets/images/anel_01.jpg') center/cover no-repeat;
     display: flex;
     align-items: center;
     padding: 80px;
@@ -245,8 +255,22 @@ body {
 
 .form-grid {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(6, minmax(0, 1fr));
     gap: 14px;
+}
+
+#produto-form .product-field-name,
+#produto-form .product-field-description {
+    grid-column: 1 / -1;
+}
+
+#produto-form .product-field-size,
+#produto-form .product-field-material,
+#produto-form .product-field-weight,
+#produto-form .product-field-category,
+#produto-form .product-field-price,
+#produto-form .product-field-stock {
+    grid-column: span 2;
 }
 
 .span-1 {
@@ -262,7 +286,7 @@ body {
 }
 
 .span-4 {
-    grid-column: span 3;
+    grid-column: span 4;
 }
 
 /* ===== INPUTS ===== */
@@ -504,6 +528,17 @@ body {
     .span-3,
     .span-4 {
         grid-column: span 1;
+    }
+
+    #produto-form .product-field-name,
+    #produto-form .product-field-size,
+    #produto-form .product-field-material,
+    #produto-form .product-field-weight,
+    #produto-form .product-field-category,
+    #produto-form .product-field-description,
+    #produto-form .product-field-price,
+    #produto-form .product-field-stock {
+        grid-column: 1 / -1;
     }
 
     .auth-container h2 {

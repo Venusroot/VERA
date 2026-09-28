@@ -1,42 +1,66 @@
+const accountMenu = document.querySelector('#account-menu');
 const sessionLabel = document.querySelector('#user-session');
-const supplierLink = document.querySelector('#fornecedor-link');
-const loginLink = document.querySelector('.header-actions > .icon-link');
-const logoutLink = document.querySelector('#logout-link');
+const accountName = document.querySelector('#account-name');
+const accountGreeting = document.querySelector('.account-greeting');
+const supplierLinks = document.querySelectorAll('[data-account-link="supplier"]');
+const supplierName = document.querySelector('[data-supplier-name]');
+const loginLink = document.querySelector('#login-link');
+const requiresSupplier = document.body.hasAttribute('data-require-supplier');
 
 fetch('sessao.php', { credentials: 'same-origin' })
     .then((response) => response.json())
     .then((session) => {
-        if (!session.autenticado || !session.usuario) return;
+        if (!session.autenticado || !session.usuario) {
+            if (requiresSupplier) {
+                window.location.replace('login.html?erro=fornecedor');
+            }
+            return;
+        }
 
         const { nome, tipo } = session.usuario;
-        if (sessionLabel) {
-            sessionLabel.textContent = `Olá, ${nome}`;
-            sessionLabel.classList.add('user-session-visible');
+        if (tipo === 'fornecedor' && supplierName) {
+            supplierName.textContent = nome;
         }
 
-        if (logoutLink) {
-            logoutLink.hidden = false;
+        if (requiresSupplier && tipo !== 'fornecedor') {
+            window.location.replace('index.html?erro=permissao');
+            return;
         }
 
-        if (tipo === 'fornecedor' && supplierLink) {
-            supplierLink.hidden = false;
+        if (accountName && accountGreeting && accountMenu && sessionLabel) {
+            accountName.textContent = nome;
+            accountGreeting.textContent = tipo === 'fornecedor' ? 'FORNECEDOR' : 'CLIENTE';
+            sessionLabel.setAttribute('aria-label', `Conta de ${tipo === 'fornecedor' ? 'fornecedor' : 'cliente'} ${nome}`);
+            accountMenu.hidden = false;
+        }
+
+        if (tipo === 'fornecedor') {
+            supplierLinks.forEach((link) => {
+                link.hidden = false;
+            });
         }
 
         if (loginLink) {
-            loginLink.setAttribute('aria-label', 'Conta de ' + nome);
-            loginLink.title = `Conta de ${nome}`;
+            loginLink.hidden = true;
         }
 
         if (new URLSearchParams(window.location.search).get('login') === 'sucesso') {
-            alert(`Usuário ${nome} logado com sucesso!`);
+            alert(`${tipo === 'fornecedor' ? 'Fornecedor' : 'Usuário'} ${nome} logado com sucesso!`);
             window.history.replaceState({}, document.title, 'index.html');
         }
 
         return;
     })
     .then(() => {
-        if (new URLSearchParams(window.location.search).get('logout') === 'sucesso') {
+        const parametros = new URLSearchParams(window.location.search);
+        if (parametros.get('logout') === 'sucesso') {
             alert('Você saiu da sua conta.');
+            window.history.replaceState({}, document.title, 'index.html');
+        } else if (parametros.get('erro') === 'fornecedor') {
+            alert('Entre com uma conta de fornecedor para cadastrar produtos.');
+            window.history.replaceState({}, document.title, 'login.html');
+        } else if (parametros.get('erro') === 'permissao') {
+            alert('Esta área é exclusiva para fornecedores.');
             window.history.replaceState({}, document.title, 'index.html');
         }
     })

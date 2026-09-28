@@ -17,7 +17,7 @@
 
 </head>
 
-<body>
+<body data-require-supplier>
   <!-- Carregamento da tela -->
   <div class="loader">
     <img src="assets/images/logo.png" alt="VERA" />
@@ -25,7 +25,6 @@
 
   <!-- CADASTRO DE PRODUTO -->
   <section class="auth-page">
-    <a href="index.html" class="back-button"> ← Voltar </a>
 
     <!-- LADO VISUAL -->
     <aside class="auth-visual">
@@ -49,6 +48,10 @@
     <!-- FORMULÁRIO -->
     <main class="auth-form-side">
       <div class="auth-container">
+        <a href="produtos_fornecedor.php" class="back-button product-back-button">
+          <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+          Voltar aos produtos
+        </a>
         <img src="assets/images/logo.png" class="form-logo mobile-logo" alt="Logo" />
 
         <h2>Cadastrar produto</h2>
@@ -60,27 +63,27 @@
             <legend class="section-title">Dados do produto</legend>
 
             <div class="form-grid">
-              <div class="input-group span-4">
+              <div class="input-group product-field-name">
                 <input type="text" id="nome" name="nome" placeholder="Nome do produto" required />
               </div>
 
-              <div class="input-group span-3">
+              <div class="input-group product-field-size">
                 <input type="text" id="tamanho" name="tamanho" placeholder="Tamanho (ex: 15, P, M, Único)" required />
               </div>
 
-              <div class="input-group span-2">
+              <div class="input-group product-field-material">
                 <input type="text" id="material" name="material" placeholder="Material (ex: Ouro 18k, Prata 925)" required />
               </div>
 
-              <div class="input-group span-2">
+              <div class="input-group product-field-weight">
                 <input type="number" step="0.01" min="0" id="peso" name="peso" placeholder="Peso (g)" required />
               </div>
 
-              <div class="input-group span-2">
+              <div class="input-group product-field-category">
                 <input type="text" id="categoria" name="categoria" placeholder="Categoria (ex: Anel, Colar, Brinco)" required />
               </div>
 
-              <div class="input-group span-4">
+              <div class="input-group product-field-description">
                 <textarea id="descricao" name="descricao" placeholder="Descrição do produto" rows="4"></textarea>
               </div>
             </div>
@@ -91,11 +94,11 @@
             <legend class="section-title">Preço e estoque inicial</legend>
 
             <div class="form-grid">
-              <div class="input-group span-4">
+              <div class="input-group product-field-price">
                 <input type="number" step="0.01" min="0" id="preco" name="preco" placeholder="Preço (R$)" required />
               </div>
 
-              <div class="input-group span-4">
+              <div class="input-group product-field-stock">
                 <input type="number" min="0" id="quantidade_inicial" name="quantidade_inicial"
                   placeholder="Quantidade inicial em estoque" />
               </div>
@@ -113,6 +116,7 @@
     </main>
   </section>
       <script src="js/register.js"></script>
+      <script src="js/session.js"></script>
 
 </body>
 

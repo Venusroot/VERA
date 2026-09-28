@@ -61,6 +61,12 @@
         <p class="login-feedback" id="login-feedback" role="alert"></p>
 
         <form class="auth-form" action="login.php" method="POST">
+          <label class="account-type-label" for="tipo-conta">Tipo de conta</label>
+          <select id="tipo-conta" name="tipo_conta" class="account-type-select" required>
+            <option value="usuario">Cliente</option>
+            <option value="fornecedor">Fornecedor</option>
+          </select>
+
           <!-- E-MAIL OU LOGIN -->
           <div class="input-group">
             <input type="text" name="identificador" autocomplete="username" required />

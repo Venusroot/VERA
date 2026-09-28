@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Produtos - VERA</title>
 
-  <link rel="icon" type="image/png" href="assets/images/favicon.png" />
+  <link rel="icon" type="image/png" href="assets/images/faricon.png" />
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/animations.css" />
   <link rel="stylesheet" href="css/responsive.css" />
@@ -57,7 +57,32 @@
           <span class="cart-count">0</span>
         </a>
 
-        <a href="login.html" class="icon-link" aria-label="Minha conta">
+        <details class="account-menu" id="account-menu" hidden>
+          <summary id="user-session" aria-live="polite">
+            <span class="account-avatar"><i class="fa-regular fa-user"></i></span>
+            <span class="account-copy">
+              <span class="account-greeting">CONTA</span>
+              <strong class="account-name" id="account-name"></strong>
+            </span>
+            <i class="fa-solid fa-chevron-down account-chevron"></i>
+          </summary>
+          <div class="account-dropdown">
+            <a href="cadastro_produto.html" data-account-link="supplier" hidden>
+              <i class="fa-solid fa-plus"></i><span>Cadastrar produto</span>
+            </a>
+            <a href="produtos_fornecedor.php" data-account-link="supplier" hidden>
+              <i class="fa-solid fa-gem"></i><span>Produtos cadastrados</span>
+            </a>
+            <a href="estoque.php" data-account-link="supplier" hidden>
+              <i class="fa-solid fa-boxes-stacked"></i><span>Estoque</span>
+            </a>
+            <a href="logout.php" class="account-logout">
+              <i class="fa-solid fa-arrow-right-from-bracket"></i><span>Sair</span>
+            </a>
+          </div>
+        </details>
+
+        <a href="login.html" class="icon-link" id="login-link" aria-label="Entrar">
           <i class="fa-regular fa-user"></i>
         </a>
 
@@ -680,6 +705,7 @@
   <script src="js/script.js"></script>
   <script src="js/cart.js"></script>
   <script src="js/favorites.js"></script>
+  <script src="js/session.js"></script>
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
